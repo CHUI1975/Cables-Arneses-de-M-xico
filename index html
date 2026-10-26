@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema B2B & Cotizador - EPP Movilla / Bandas El Tigre</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .card-prod { transition: all 0.2s ease-in-out; }
+    .card-prod:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col">
+
+  <!-- HEADER -->
+  <header class="bg-slate-900 text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <div class="bg-amber-500 text-slate-900 font-black px-3 py-1 rounded text-xl">EL TIGRE</div>
+        <div>
+          <h1 class="font-bold text-lg leading-tight">Equipos de Seguridad Movilla</h1>
+          <p class="text-xs text-amber-400">Portal Privado de Ventas B2B — Versión El Inge</p>
+        </div>
+      </div>
+      <div class="hidden md:flex items-center space-x-4 text-xs">
+        <span class="bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-full text-slate-300">
+          <i class="fa-solid fa-shield-halved text-amber-400 mr-1"></i> Precios Fábrica Directo
+        </span>
+        <span class="bg-emerald-950 border border-emerald-700 text-emerald-300 px-3 py-1.5 rounded-full font-semibold">
+          <i class="fa-solid fa-calculator mr-1"></i> Calculador de Utilidad Activo
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVEGACIÓN PRINCIPAL -->
+  <nav class="bg-slate-800 border-b border-slate-700 text-slate-300">
+    <div class="max-w-7xl mx-auto px-4 flex overflow-x-auto space-x-2 py-2 text-sm font-medium">
+      <button onclick="switchTab('catalogo')" id="tab-catalogo" class="px-4 py-2 rounded-lg bg-amber-500 text-slate-950 font-bold flex items-center gap-2">
+        <i class="fa-solid fa-boxes-stacked"></i> Catálogo Completo (23 SKUs)
+      </button>
+      <button onclick="switchTab('cotizador')" id="tab-cotizador" class="px-4 py-2 rounded-lg hover:bg-slate-700 flex items-center gap-2">
+        <i class="fa-solid fa-file-invoice-dollar"></i> Cotizador & Carrito (<span id="cart-count">0</span>)
+      </button>
+      <button onclick="switchTab('certificados')" id="tab-certificados" class="px-4 py-2 rounded-lg hover:bg-slate-700 flex items-center gap-2">
+        <i class="fa-solid fa-certificate text-amber-400"></i> Certificados de Herrajes
+      </button>
+      <button onclick="switchTab('copilot')" id="tab-copilot" class="px-4 py-2 rounded-lg hover:bg-slate-700 flex items-center gap-2">
+        <i class="fa-solid fa-comments text-emerald-400"></i> Copiloto Argumentos de Venta
+      </button>
+    </div>
+  </nav>
+
+  <!-- CONTENIDO -->
+  <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
+
+    <!-- SECCIÓN 1: CATÁLOGO -->
+    <section id="sec-catalogo" class="space-y-6">
+      
+      <!-- BUSCADOR Y FILTROS -->
+      <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex flex-col md:flex-row gap-4 items-center justify-between">
+        <div class="relative w-full md:w-96">
+          <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400"></i>
+          <input type="text" id="search-input" oninput="filterProducts()" placeholder="Buscar por modelo o descripción..." class="w-full pl-9 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm">
+        </div>
+        <div class="flex gap-2 overflow-x-auto w-full md:w-auto pb-1 md:pb-0 text-xs">
+          <button onclick="filterCategory('ALL')" class="cat-btn px-3 py-1.5 rounded-full bg-slate-900 text-white font-semibold">Todos</button>
+          <button onclick="filterCategory('ARNES')" class="cat-btn px-3 py-1.5 rounded-full bg-slate-200 hover:bg-slate-300">Arneses</button>
+          <button onclick="filterCategory('CABLE')" class="cat-btn px-3 py-1.5 rounded-full bg-slate-200 hover:bg-slate-300">Cables de Vida</button>
+          <button onclick="filterCategory('BANDOLA')" class="cat-btn px-3 py-1.5 rounded-full bg-slate-200 hover:bg-slate-300">Bandolas</button>
+          <button onclick="filterCategory('CINTO_PH')" class="cat-btn px-3 py-1.5 rounded-full bg-slate-200 hover:bg-slate-300">Cintos PH</button>
+          <button onclick="filterCategory('BOLSA')" class="cat-btn px-3 py-1.5 rounded-full bg-slate-200 hover:bg-slate-300">Bolsas</button>
+          <button onclick="filterCategory('FAJA')" class="cat-btn px-3 py-1.5 rounded-full bg-slate-200 hover:bg-slate-300">Fajas</button>
+        </div>
+      </div>
+
+      <!-- GRID DE PRODUCTOS -->
+      <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Generado dinámicamente -->
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: COTIZADOR & CARRITO -->
+    <section id="sec-cotizador" class="hidden space-y-6">
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-calculator text-amber-500"></i> Cotización en Curso
+        </h2>
+
+        <div class="overflow-x-auto mb-6">
+          <table class="w-full text-left text-sm">
+            <thead class="bg-slate-100 text-slate-700 uppercase text-xs">
+              <tr>
+                <th class="p-3">Producto / Modelo</th>
+                <th class="p-3">Cant.</th>
+                <th class="p-3">Costo Inge c/IVA</th>
+                <th class="p-3">PVP Venta c/IVA</th>
+                <th class="p-3">Ganancia Inge</th>
+                <th class="p-3">Subtotal Cliente</th>
+                <th class="p-3 text-center">Acción</th>
+              </tr>
+            </thead>
+            <tbody id="cart-rows" class="divide-y divide-slate-200">
+              <!-- Carga dinámicamente -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- RESUMEN FINANCIERO -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 bg-slate-50 p-6 rounded-xl border border-slate-200">
+          <div>
+            <h3 class="font-bold text-slate-900 mb-2">Datos del Cliente para Cotización</h3>
+            <div class="space-y-3">
+              <input type="text" id="cli-nombre" placeholder="Nombre de la empresa o comprador" class="w-full p-2 border border-slate-300 rounded text-sm">
+              <input type="text" id="cli-atencion" placeholder="Atención a (Ing. / Arquitecto / Lic.)" class="w-full p-2 border border-slate-300 rounded text-sm">
+              <input type="text" id="cli-obra" placeholder="Ubicación de obra / proyecto" class="w-full p-2 border border-slate-300 rounded text-sm">
+            </div>
+          </div>
+
+          <div class="space-y-3 bg-white p-4 rounded-lg border border-slate-200">
+            <div class="flex justify-between text-sm">
+              <span class="text-slate-600">Subtotal Neto:</span>
+              <span id="res-subtotal" class="font-semibold">$0.00 MXN</span>
+            </div>
+            <div class="flex justify-between text-sm">
+              <span class="text-slate-600">IVA (16%):</span>
+              <span id="res-iva" class="font-semibold">$0.00 MXN</span>
+            </div>
+            <div class="flex justify-between text-base font-bold text-slate-900 pt-2 border-t">
+              <span>TOTAL CLIENTE:</span>
+              <span id="res-total" class="text-emerald-600">$0.00 MXN</span>
+            </div>
+
+            <!-- PANEL PRIVADO INGE -->
+            <div class="mt-4 p-3 bg-emerald-900 text-emerald-100 rounded-lg">
+              <div class="text-xs uppercase tracking-wider text-emerald-300 font-bold mb-1">💰 Ganancia Neta Limpia para "El Inge"</div>
+              <div id="res-ganancia-ing" class="text-2xl font-black text-white">$0.00 MXN</div>
+              <p class="text-[11px] text-emerald-300 mt-1">*Diferencia entre el costo Inge y el precio de venta acordado con el cliente.</p>
+            </div>
+
+            <button onclick="generarWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2">
+              <i class="fa-brands fa-whatsapp text-lg"></i> Enviar Cotización por WhatsApp
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: CERTIFICADOS -->
+    <section id="sec-certificados" class="hidden space-y-6">
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h2 class="text-xl font-bold text-slate-900 mb-2">
+          <i class="fa-solid fa-award text-amber-500"></i> Certificados de Laboratorio & Normatividad (Herrajes)
+        </h2>
+        <p class="text-sm text-slate-600 mb-6">Respaldo normativo y test reports oficiales listos para presentar ante auditores de seguridad industrial y unidades de verificación.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-4 border border-slate-200 rounded-lg bg-slate-50 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <i class="fa-solid fa-file-pdf text-red-600 text-3xl"></i>
+                <div>
+                  <h4 class="font-bold text-slate-900">Gancho Grande Estructurero JS-2031</h4>
+                  <p class="text-xs text-slate-500">APAVE European Regulation 2016/425</p>
+                </div>
+              </div>
+              <p class="text-xs text-slate-600 mb-4">Certificación de gancho de gran apertura ($2\frac{1}{4}''$), acero forjado, resistencia mínima de 5,000 lbs.</p>
+            </div>
+            <button onclick="verCertificado('JS-2031 Gancho Grande', 'Certificación APAVE UE 2016/425 para ganchos estructureros de 5,000 lbs.')" class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold py-2 px-3 rounded flex items-center justify-center gap-2">
+              <i class="fa-solid fa-eye"></i> Ver / Consultar Ficha PDF
+            </button>
+          </div>
+
+          <div class="p-4 border border-slate-200 rounded-lg bg-slate-50 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <i class="fa-solid fa-file-pdf text-red-600 text-3xl"></i>
+                <div>
+                  <h4 class="font-bold text-slate-900">Gancho Ojo Pequeño JS-2091</h4>
+                  <p class="text-xs text-slate-500">APAVE European Regulation 2016/425</p>
+                </div>
+              </div>
+              <p class="text-xs text-slate-600 mb-4">Certificación de conformidad para conectores de ojo pequeño con doble seguro de alta resistencia.</p>
+            </div>
+            <button onclick="verCertificado('JS-2091 Gancho Ojo Pequeño', 'Certificación APAVE UE 2016/425 para conectores y ganchos de ojo pequeño.')" class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold py-2 px-3 rounded flex items-center justify-center gap-2">
+              <i class="fa-solid fa-eye"></i> Ver / Consultar Ficha PDF
+            </button>
+          </div>
+
+          <div class="p-4 border border-slate-200 rounded-lg bg-slate-50 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <i class="fa-solid fa-file-pdf text-red-600 text-3xl"></i>
+                <div>
+                  <h4 class="font-bold text-slate-900">Argolla "D" Semicírculo JS-3009</h4>
+                  <p class="text-xs text-slate-500">INSPEC Test Report (ANSI / ISO 17025)</p>
+                </div>
+              </div>
+              <p class="text-xs text-slate-600 mb-4">Informe de ensayo de laboratorio acreditado ANAB/ANSI para argollas en D de arneses.</p>
+            </div>
+            <button onclick="verCertificado('JS-3009 Argolla D Semicírculo', 'INSPEC Testing Services Test Report (ANSI Z359 / ISO 17025).')" class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold py-2 px-3 rounded flex items-center justify-center gap-2">
+              <i class="fa-solid fa-eye"></i> Ver / Consultar Test Report
+            </button>
+          </div>
+
+          <div class="p-4 border border-slate-200 rounded-lg bg-slate-50 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <i class="fa-solid fa-file-pdf text-red-600 text-3xl"></i>
+                <div>
+                  <h4 class="font-bold text-slate-900">Argolla "D" Círculo Completo JS-3031</h4>
+                  <p class="text-xs text-slate-500">INSPEC Test Report (ANSI / ISO 17025)</p>
+                </div>
+              </div>
+              <p class="text-xs text-slate-600 mb-4">Ensayo de resistencia estática y dinámica para argollas dorsales y de posicionamiento.</p>
+            </div>
+            <button onclick="verCertificado('JS-3031 Argolla Círculo Completo', 'INSPEC Testing Services Test Report para argollas circulares de alta carga.')" class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold py-2 px-3 rounded flex items-center justify-center gap-2">
+              <i class="fa-solid fa-eye"></i> Ver / Consultar Test Report
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: COPILOTO VENTAS -->
+    <section id="sec-copilot" class="hidden space-y-6">
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h2 class="text-xl font-bold text-slate-900 mb-2">
+          <i class="fa-solid fa-user-ninja text-emerald-600"></i> Copiloto Comercial: Argumentos & Objeciones
+        </h2>
+        <p class="text-sm text-slate-600 mb-6">Guía rápida para que El Inge derribe cualquier objeción de compradores y auditores en obra.</p>
+
+        <div class="space-y-4">
+          <div class="p-4 rounded-lg bg-amber-50 border border-amber-200">
+            <h4 class="font-bold text-amber-900 flex items-center gap-2">
+              <i class="fa-solid fa-shield-cat"></i> Objeción: "Encuentro equipos más baratos con distribuidores genéricos"
+            </h4>
+            <p class="text-sm text-amber-800 mt-1">
+              <strong>Respuesta del Inge:</strong> "Nosotros somos fabricantes directos sin intermediarios. No competimos recortando calidad en el acero de las argollas o reduciendo el gramaje de las cintas de poliéster. Cada kit incluye certificados de laboratorio APAVE/INSPEC. Comprar más barato suele costar multas de la STPS o reemplazos constantes a los 3 meses."
+            </p>
+          </div>
+
+          <div class="p-4 rounded-lg bg-blue-50 border border-blue-200">
+            <h4 class="font-bold text-blue-900 flex items-center gap-2">
+              <i class="fa-solid fa-toolbox"></i> Objeción: "¿Por qué las bolsas y cinturones de cuero cuestan más que las de tela?"
+            </h4>
+            <p class="text-sm text-blue-800 mt-1">
+              <strong>Respuesta del Inge:</strong> "Una bolsa o cinturón de poliéster sintético dura entre 2 y 4 meses con herramienta pesada e intemperie en obra. El cuero de alta densidad de Bandas El Tigre soporta desgaste rudo, picos y objetos punzocortantes por más de 2 años. El costo por mes de uso es 60% más bajo."
+            </p>
+          </div>
+
+          <div class="p-4 rounded-lg bg-slate-100 border border-slate-300">
+            <h4 class="font-bold text-slate-900 flex items-center gap-2">
+              <i class="fa-solid fa-truck-fast"></i> Objeción: "¿Cuánto tardan en entregar en CDMX y Estado de México?"
+            </h4>
+            <p class="text-sm text-slate-700 mt-1">
+              <strong>Respuesta del Inge:</strong> "Contamos con inventario de entrega inmediata directa de almacén para proyectos urbanos e industriales. Entregamos de 24 a 48 horas en obra dentro de la Zona Metropolitana."
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL DE FICHA TÉCNICA -->
+  <div id="modal-ficha" class="fixed inset-0 bg-slate-900/60 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl max-w-lg w-full p-6 shadow-xl border border-slate-200">
+      <div class="flex justify-between items-center mb-4">
+        <h3 id="modal-titulo" class="font-bold text-slate-900 text-lg">Ficha Técnica Oficial</h3>
+        <button onclick="cerrarModal()" class="text-slate-400 hover:text-slate-700 text-xl font-bold">&times;</button>
+      </div>
+      <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 mb-4">
+        <p id="modal-desc" class="text-sm text-slate-700 mb-2">Detalle técnico del producto, normas aplicables y especificaciones de fabricación.</p>
+        <span class="inline-block bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded font-bold">Estado: Ficha Verificada y Homologada</span>
+      </div>
+      <div class="flex justify-end gap-2">
+        <button onclick="cerrarModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-bold px-4 py-2 rounded">Cerrar</button>
+        <button onclick="alert('¡Enlace de ficha técnica copiado para enviar por WhatsApp al cliente!'); cerrarModal();" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded flex items-center gap-2">
+          <i class="fa-brands fa-whatsapp"></i> Enviar Ficha por WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 py-4 text-center text-xs border-t border-slate-800">
+    <p>Equipos de Seguridad Movilla S.A. de C.V. — Sistema de Control Comercial B2B</p>
+    <p class="text-slate-500 mt-1">Tecnología exclusiva desarrollada para operación directa de campo.</p>
+  </footer>
+
+  <script>
+    // DATOS DE LOS 23 PRODUCTOS (OFICIAL Y VALIDADO)
+    const productos = [
+      // ARNESES
+      { sku: "100-NDAZ-1", cat: "ARNES", nom: "Arnés Poliéster Amarillo c/ Pechera y 1 Argolla D", costo: 381.00, pvp: 488.00, pdf: "100-NDAM-AZ-1.pdf", desc: "Arnés contra caídas básico con 1 argolla dorsal en D. Cinta alta tenacidad." },
+      { sku: "101-NDAZ-1", cat: "ARNES", nom: "Arnés Poliéster Amarillo 1 Argolla D Hebilla Deslizable", costo: 426.30, pvp: 510.00, pdf: "101-NDAM-AZ-1.pdf", desc: "Cinta entre piernas, pechera y hebillas deslizables de ajuste rápido." },
+      { sku: "100-NDAM-3", cat: "ARNES", nom: "Arnés Poliéster Azul 3 Argollas D (Dorsal y Laterales)", costo: 505.00, pvp: 595.00, pdf: "100-NDAM-AZ-3.pdf", desc: "Arnés contra caídas, posicionamiento y rescate. 3 argollas de acero forjado." },
+      { sku: "102-NDAMC-3", cat: "ARNES", nom: "Arnés Poliéster Azul c/ Cinturón y 3 Argollas D", costo: 617.70, pvp: 785.00, pdf: "102-NDAMC-AZC-3.pdf", desc: "Diseño ergonómico con cinturón integrado para trabajos prolongados en altura." },
+
+      // CABLES DE VIDA
+      { sku: "200-NDAM", cat: "CABLE", nom: "Cable Cinta Poliéster Amarillo 47x2mm 1.83m c/ 2 Seguros", costo: 365.40, pvp: 490.00, pdf: "200-NDAM-NDAZ.pdf", desc: "Línea de vida sencilla con 2 ganchos de seguridad de 3/4''." },
+      { sku: "200-PP-16", cat: "CABLE", nom: "Cable Polipropileno Trenzado 16mm 1.83m c/ 2 Ganchos", costo: 379.00, pvp: 550.00, pdf: "200-PP-16.pdf", desc: "Cuerda de gran tenacidad dieléctrica y alta resistencia a la abrasión." },
+      { sku: "200-N-16", cat: "CABLE", nom: "Cable Multifilamento 16mm 1.83m c/ 2 Ganchos", costo: 481.40, pvp: 680.00, pdf: "200-N-16.pdf", desc: "Cuerda de multifilamento de nylon suave, flexible y ultra resistente." },
+      { sku: "201-NDAMA", cat: "CABLE", nom: "Cable Poliéster c/ Amortiguador de Impacto 1.83m", costo: 382.80, pvp: 520.00, pdf: "201-NDAMA-NDAZA.pdf", desc: "Disipador de energía que frena caídas reduciendo el impacto en el cuerpo." },
+      { sku: "202-NDAMBDA", cat: "CABLE", nom: "Cable Doble Brazo (Y) c/ Amortiguador y Ganchos Chicos", costo: 414.70, pvp: 583.00, pdf: "202-NDAMBDA-NDAZDBA.pdf", desc: "Permite un enganche 100% continuo al desplazarse en estructuras." },
+      { sku: "202-NDAMBDAGG", cat: "CABLE", nom: "Cable Doble Brazo (Y) c/ Amortiguador y Ganchos Grandes 2 1/4''", costo: 700.00, pvp: 850.00, pdf: "202-NDAMBDAGG-NDAZDBAGG.pdf", desc: "Ganchos estructureros de gran apertura certificada APAVE para andamios." },
+
+      // BANDOLAS
+      { sku: "301-NGA-16", cat: "BANDOLA", nom: "Bandola Cinta Poliéster Amarilla 47x5mm de 1.60m", costo: 584.35, pvp: 655.00, pdf: "301-NGA-NGB 16-19-23.pdf", desc: "Bandola de sujeción y posicionamiento en postes o estructuras." },
+      { sku: "303-NGA-16", cat: "BANDOLA", nom: "Bandola Cinta Poliéster Amarilla 37x4mm de 1.60m", costo: 419.05, pvp: 620.00, pdf: "303-NGA-NGB 16-19-23.pdf", desc: "Bandola ligera de alta tracción con ganchos de seguridad." },
+      { sku: "305-NN-16", cat: "BANDOLA", nom: "Bandola de Nylon y Neopreno (6 Capas) 1.60m Heavy Duty", costo: 1339.80, pvp: 1500.00, pdf: "305-NN 16-19-23.pdf", desc: "Banda de 6 capas impregnada, máxima durabilidad industrial y química." },
+
+      // CINTURONES PORTAHERRAMIENTA
+      { sku: "300-NGA-66", cat: "CINTO_PH", nom: "Cinto Portaherramientas Poliéster Respaldo 66mm", costo: 453.85, pvp: 600.00, pdf: "300-NGA-NGB-66.pdf", desc: "Respaldo ergonómico para reducir fatiga en cintura." },
+      { sku: "302-NDAM-80", cat: "CINTO_PH", nom: "Cinto Portaherramientas Cosido Respaldo 80mm", costo: 394.40, pvp: 500.00, pdf: "302-NDAMA-NDAZA-80.pdf", desc: "Cinta de poliéster reforzada de alta resistencia a la rotura." },
+      { sku: "300-NGAA-101", cat: "CINTO_PH", nom: "Cinto Portaherramientas Poliéster Respaldo 101mm Acolchado", costo: 617.70, pvp: 820.00, pdf: "300-NGAA-NGBA-101_1.pdf", desc: "Soporte lumbar velúr ultra cómodo de 4 pulgadas." },
+      { sku: "304-NNA-101", cat: "CINTO_PH", nom: "Cinturón Portaherramientas Nylon/Neopreno 101mm Acolchado", costo: 1450.00, pvp: 2600.00, pdf: "304-NNA-101_1.pdf", desc: "Gama premium de durabilidad extrema en entornos agresivos." },
+
+      // BOLSAS PORTAHERRAMIENTA
+      { sku: "435", cat: "BOLSA", nom: "Bolsa Portaherramientas de Cuero 12 Compartimentos (24x25cm)", costo: 358.00, pvp: 357.00, pdf: "435.pdf", desc: "100% cuero genuino de uso rudo para fontaneros, electricistas y obra." },
+      { sku: "433", cat: "BOLSA", nom: "Bolsa Clavera Lona 5 Compartimentos c/ Portamartillo", costo: 326.00, pvp: 285.00, pdf: "433.pdf", desc: "Reforzada con cuero y cinta de poliéster de alta tenacidad." },
+      { sku: "421", cat: "BOLSA", nom: "Bolsa Portaherramientas de Cuero 1 Compartimento (27x10cm)", costo: 141.00, pvp: 155.00, pdf: "421.pdf", desc: "Bolsa compacta de acceso rápido para herramienta de mano." },
+
+      // CINTURONES SIMPLES
+      { sku: "315-C GDE", cat: "CINTO_PH", nom: "Cinturón Cuero c/ 1 Gatillo para Bolsa Portaherramientas", costo: 358.00, pvp: 295.00, pdf: "315-C.pdf", desc: "Cuero genuino de $38\times4\text{ mm}$ con hebilla de gatillo de alta resistencia." },
+
+      // FAJAS
+      { sku: "500-SETC MED", cat: "FAJA", nom: "Faja Sacrolumbar Reforzada c/ Tirantes y Varillas", costo: 108.75, pvp: 155.00, pdf: "500-SETC.pdf", desc: "Elástico de 8 pulgadas con doble ajuste para estibadores y carga." },
+      { sku: "502-C-1 MED", cat: "FAJA", nom: "Faja Cuero para Carga y Estructura c/ Gatillo 100mm", costo: 279.85, pvp: 325.00, pdf: "502-C-1.pdf", desc: "Soporte lumbar rígido de cuero con hebilla industrial." }
+    ];
+
+    let carrito = [];
+
+    window.onload = function() {
+      renderProducts(productos);
+    };
+
+    function renderProducts(lista) {
+      const grid = document.getElementById('product-grid');
+      grid.innerHTML = '';
+
+      lista.forEach(p => {
+        const ganancia = (p.pvp - p.costo).toFixed(2);
+        const porc = (((p.pvp - p.costo) / p.costo) * 100).toFixed(1);
+
+        grid.innerHTML += `
+          <div class="card-prod bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+            <div class="p-4 flex-1">
+              <div class="flex justify-between items-start gap-2 mb-2">
+                <span class="bg-slate-100 text-slate-800 text-[11px] font-bold px-2 py-0.5 rounded border border-slate-300">${p.sku}</span>
+                <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">+${porc}% Margen</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-sm leading-snug mb-1">${p.nom}</h3>
+              <p class="text-xs text-slate-500 mb-3">${p.desc}</p>
+
+              <!-- CAJA DE PRECIOS PRIVADA -->
+              <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 mb-3 grid grid-cols-2 gap-2 text-xs">
+                <div>
+                  <span class="text-slate-500 block">Costo Inge c/IVA:</span>
+                  <span class="font-bold text-slate-900 text-sm">$${p.costo.toFixed(2)}</span>
+                </div>
+                <div>
+                  <span class="text-slate-500 block">PVP Sugerido:</span>
+                  <span class="font-bold text-amber-600 text-sm">$${p.pvp.toFixed(2)}</span>
+                </div>
+                <div class="col-span-2 pt-1 border-t border-slate-200 flex justify-between text-emerald-700 font-semibold">
+                  <span>Ganancia Neta Inge:</span>
+                  <span>+$${ganancia} MXN</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between gap-2">
+              <button onclick="verFichaTecnica('${p.sku}', '${p.nom}', '${p.pdf}')" class="text-xs text-red-600 hover:text-red-800 font-bold flex items-center gap-1 bg-white border border-red-200 px-2.5 py-1.5 rounded-lg shadow-sm">
+                <i class="fa-solid fa-file-pdf"></i> Ficha ${p.pdf}
+              </button>
+              <button onclick="agregarAlCarrito('${p.sku}')" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-3 py-1.5 rounded-lg text-xs flex items-center gap-1">
+                <i class="fa-solid fa-plus"></i> Cotizar
+              </button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function filterCategory(cat) {
+      if (cat === 'ALL') {
+        renderProducts(productos);
+      } else {
+        const filtrados = productos.filter(p => p.cat === cat);
+        renderProducts(filtrados);
+      }
+    }
+
+    function filterProducts() {
+      const q = document.getElementById('search-input').value.toLowerCase();
+      const filtrados = productos.filter(p => p.nom.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q));
+      renderProducts(filtrados);
+    }
+
+    function verFichaTecnica(sku, nombre, archivo) {
+      document.getElementById('modal-titulo').innerText = `Ficha Técnica: ${sku}`;
+      document.getElementById('modal-desc').innerHTML = `<strong>${nombre}</strong><br>Archivo oficial registrado: <span class="text-red-600 font-mono">${archivo}</span><br><br>Esta ficha contiene las especificaciones de materiales, tensiones de ruptura y normas aplicables del catálogo Bandas El Tigre.`;
+      document.getElementById('modal-ficha').classList.remove('hidden');
+    }
+
+    function verCertificado(titulo, descripcion) {
+      document.getElementById('modal-titulo').innerText = titulo;
+      document.getElementById('modal-desc').innerHTML = `${descripcion}<br><br>Documento oficial respaldado por pruebas de laboratorio internacional (APAVE / INSPEC Testing Services) con validez ante normatividad vigente.`;
+      document.getElementById('modal-ficha').classList.remove('hidden');
+    }
+
+    function cerrarModal() {
+      document.getElementById('modal-ficha').classList.add('hidden');
+    }
+
+    function agregarAlCarrito(sku) {
+      const prod = productos.find(p => p.sku === sku);
+      const existe = carrito.find(item => item.sku === sku);
+
+      if (existe) {
+        existe.cant += 1;
+      } else {
+        carrito.push({
+          sku: prod.sku,
+          nom: prod.nom,
+          costo: prod.costo,
+          pvp: prod.pvp,
+          cant: 1
+        });
+      }
+
+      actualizarCarritoUI();
+      alert(`¡Agregado al cotizador: ${prod.sku}!`);
+    }
+
+    function actualizarCarritoUI() {
+      document.getElementById('cart-count').innerText = carrito.reduce((acc, i) => acc + i.cant, 0);
+
+      const rows = document.getElementById('cart-rows');
+      rows.innerHTML = '';
+
+      let subtotalTotal = 0;
+      let gananciaTotalInge = 0;
+
+      carrito.forEach((item, index) => {
+        const subtotalCliente = item.pvp * item.cant;
+        const gananciaItem = (item.pvp - item.costo) * item.cant;
+
+        subtotalTotal += subtotalCliente;
+        gananciaTotalInge += gananciaItem;
+
+        rows.innerHTML += `
+          <tr>
+            <td class="p-3 font-semibold text-slate-900">${item.nom} <br><span class="text-xs text-slate-500">${item.sku}</span></td>
+            <td class="p-3">
+              <input type="number" min="1" value="${item.cant}" onchange="cambiarCantidad(${index}, this.value)" class="w-16 p-1 border rounded text-center">
+            </td>
+            <td class="p-3 text-slate-600">$${item.costo.toFixed(2)}</td>
+            <td class="p-3">
+              <input type="number" step="0.5" value="${item.pvp.toFixed(2)}" onchange="cambiarPVP(${index}, this.value)" class="w-24 p-1 border rounded text-right font-bold text-amber-600">
+            </td>
+            <td class="p-3 font-bold text-emerald-600">+$${gananciaItem.toFixed(2)}</td>
+            <td class="p-3 font-bold text-slate-900">$${subtotalCliente.toFixed(2)}</td>
+            <td class="p-3 text-center">
+              <button onclick="eliminarItem(${index})" class="text-red-500 hover:text-red-700">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        `;
+      });
+
+      const iva = subtotalTotal * 0.16;
+      const total = subtotalTotal + iva;
+
+      document.getElementById('res-subtotal').innerText = `$${subtotalTotal.toFixed(2)} MXN`;
+      document.getElementById('res-iva').innerText = `$${iva.toFixed(2)} MXN`;
+      document.getElementById('res-total').innerText = `$${total.toFixed(2)} MXN`;
+      document.getElementById('res-ganancia-ing').innerText = `$${gananciaTotalInge.toFixed(2)} MXN`;
+    }
+
+    function cambiarCantidad(index, val) {
+      carrito[index].cant = parseInt(val) || 1;
+      actualizarCarritoUI();
+    }
+
+    function cambiarPVP(index, val) {
+      const nuevoPVP = parseFloat(val) || 0;
+      if (nuevoPVP < carrito[index].costo) {
+        alert("¡Atención Inge! El precio de venta no puede ser menor al Costo Inge para proteger tu margen.");
+        actualizarCarritoUI();
+        return;
+      }
+      carrito[index].pvp = nuevoPVP;
+      actualizarCarritoUI();
+    }
+
+    function eliminarItem(index) {
+      carrito.splice(index, 1);
+      actualizarCarritoUI();
+    }
+
+    function switchTab(tab) {
+      document.getElementById('sec-catalogo').classList.add('hidden');
+      document.getElementById('sec-cotizador').classList.add('hidden');
+      document.getElementById('sec-certificados').classList.add('hidden');
+      document.getElementById('sec-copilot').classList.add('hidden');
+
+      document.getElementById('sec-' + tab).classList.remove('hidden');
+    }
+
+    function generarWhatsApp() {
+      if (carrito.length === 0) {
+        alert("El cotizador está vacío. Agrega productos desde el catálogo.");
+        return;
+      }
+
+      const cliente = document.getElementById('cli-nombre').value || "Cliente";
+      const atencion = document.getElementById('cli-atencion').value || "Ingeniería / Compras";
+
+      let msg = `*COTIZACIÓN OFICIAL - EQUIPOS DE SEGURIDAD MOVILLA / BANDAS EL TIGRE*\n`;
+      msg += `*Cliente:* ${cliente}\n`;
+      msg += `*Atención:* ${atencion}\n\n`;
+      msg += `*DESGLOSE DE PRODUCTOS:*\n`;
+
+      let totalCliente = 0;
+      carrito.forEach(i => {
+        const sub = i.pvp * i.cant;
+        totalCliente += sub;
+        msg += `• *${i.sku}* - ${i.nom}\n  ${i.cant} pza(s) x $${i.pvp.toFixed(2)} = *$${sub.toFixed(2)} MXN*\n`;
+      });
+
+      const iva = totalCliente * 0.16;
+      const totalConIVA = totalCliente + iva;
+
+      msg += `\n*Subtotal:* $${totalCliente.toFixed(2)} MXN\n`;
+      msg += `*IVA (16%):* $${iva.toFixed(2)} MXN\n`;
+      msg += `*TOTAL:* *$${totalConIVA.toFixed(2)} MXN*\n\n`;
+      msg += `✅ Incluye fichas técnicas y certificados de herrajes de laboratorio.\n`;
+      msg += `🚚 Entrega en Zona Metropolitana / Envíos a todo México.\n`;
+      msg += `⏳ Vigencia: 15 días naturales.`;
+
+      const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
