@@ -245,20 +245,19 @@ UTF-8">
                 alert('Por favor selecciona al menos un producto para cotizar.');
                 return;
             }
-            let message = `Hola, me interesa solicitar cotización y factura inmediata para los siguientes equipos:%0A`;
-            message += `*Cliente:* ${clientName}%0A%0A`;
+            let message = "Hola, me interesa solicitar cotización y factura inmediata para los siguientes equipos:\n";
+            message += "Cliente: " + clientName + "\n\n";
             let totalGeneral = 0;
             cart.forEach((item, i) => {
                 let subtotal = item.quantity * item.precio;
                 totalGeneral += subtotal;
-                message += `${i+1}. *${item.quantity}x* Modelo *${item.ref}* ($${subtotal.toFixed(2)} MXN)%0A`;
+                message += (i + 1) + ". " + item.quantity + "x Modelo " + item.ref + " ($" + subtotal.toFixed(2) + " MXN)\n";
             });
-            message += `%0A*Total Estimado (IVA Incluido):* $${totalGeneral.toFixed(2)} MXN%0A`;
-            message += `Quedo atento a su confirmación y datos para facturación.`;
+            message += "\nTotal Estimado (IVA Incluido): $" + totalGeneral.toFixed(2) + " MXN\n";
+            message += "Quedo atento a su confirmación y datos para facturación.";
             
-            const phone = "0034639308691"; // Tu número original intacto
-            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
-        }
+            const phone = "0034639308691";
+            window.open("https://wa.me/" + phone + "?text=" + encodeURIComponent(message), '_blank');
 
         function sendObjection(text) {
             const encoded = encodeURIComponent(text);
