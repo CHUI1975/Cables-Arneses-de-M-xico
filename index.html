@@ -192,81 +192,88 @@ UTF-8">
         let cart = [];
 
         function addToQuote(ref, precio) {
-            const qtyInput = document.getElementById(`qty-${ref}`);
-            const quantity = parseInt(qtyInput.value) || 1;
-            
-            const existingIndex = cart.findIndex(item => item.ref === ref);
-            if(existingIndex > -1) {
-                cart[existingIndex].quantity += quantity;
-            } else {
-                cart.push({ ref: ref, quantity: quantity, precio: precio });
-            }
-            
-            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-            document.getElementById('cart-count').innerText = totalCount;
-            updateCartUI();
-            alert(`Añadido: ${quantity} pza(s) del Modelo ${ref}`);
+        const qtyInput = document.getElementById(`qty-${ref}`);
+        const quantity = parseInt(qtyInput.value) || 1;
+        
+        const existingIndex = cart.findIndex(item => item.ref === ref);
+        if(existingIndex > -1) {
+            cart[existingIndex].quantity += quantity;
+        } else {
+            cart.push({ ref: ref, quantity: quantity, precio: precio });
         }
+        
+        const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.getElementById('cart-count').innerText = totalCount;
+        updateCartUI();
+        alert(`Añadido: ${quantity} pza(s) del Modelo ${ref}`);
+    }
 
-        function updateCartUI() {
-            const container = document.getElementById('cart-items');
-            const totalContainer = document.getElementById('cart-total');
-            if(cart.length === 0) {
-                container.innerHTML = '<p class="text-gray-500 italic">No hay productos seleccionados todavía.</p>';
-                totalContainer.innerHTML = '';
-                return;
-            }
-            let html = '<ul class="divide-y divide-gray-200">';
-            let totalGeneral = 0;
-            
-            cart.forEach((item, index) => {
-                let subtotal = item.quantity * item.precio;
-                totalGeneral += subtotal;
-                html += `<li class="py-2 flex justify-between items-center text-sm">
-                            <span>📦 <b>${item.ref}</b> x ${item.quantity} pza(s) - <b>$${subtotal.toFixed(2)} MXN</b></span> 
-                            <button onclick="removeFromCart(${index})" class="text-red-600 hover:text-red-800 text-xs font-bold">Eliminar</button>
-                         </li>`;
-            });
-            html += '</ul>';
-            container.innerHTML = html;
-            totalContainer.innerHTML = `Total Estimado (IVA Incluido): $${totalGeneral.toFixed(2)} MXN`;
+    function updateCartUI() {
+        const container = document.getElementById('cart-items');
+        const totalContainer = document.getElementById('cart-total');
+        if(!container || !totalContainer) return;
+        
+        if(cart.length === 0) {
+            container.innerHTML = '<p class="text-gray-500 italic">No hay productos seleccionados todavía.</p>';
+            totalContainer.innerHTML = '';
+            return;
         }
+        let html = '<ul class="divide-y divide-gray-200">';
+        let totalGeneral = 0;
+        
+        cart.forEach((item, index) => {
+            let subtotal = item.quantity * item.precio;
+            totalGeneral += subtotal;
+            html += `<li class="py-2 flex justify-between items-center text-sm">
+                        <span>📦 <b>${item.ref}</b> x ${item.quantity} pza(s) - <b>$${subtotal.toFixed(2)} MXN</b></span> 
+                        <button onclick="removeFromCart(${index})" class="text-red-600 hover:text-red-800 text-xs font-bold">Eliminar</button>
+                     </li>`;
+        });
+        html += '</ul>';
+        container.innerHTML = html;
+        totalContainer.innerHTML = `Total Estimado (IVA Incluido): $${totalGeneral.toFixed(2)} MXN`;
+    }
 
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-            document.getElementById('cart-count').innerText = totalCount;
-            updateCartUI();
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.getElementById('cart-count').innerText = totalCount;
+        updateCartUI();
+    }
+
+    function sendWhatsAppOrder() {
+        const clientNameInput = document.getElementById('client-name');
+        const clientName = clientNameInput ? clientNameInput.value || 'Cliente B2B' : 'Cliente B2B';
+        
+        if(cart.length === 0) {
+            alert('Por favor selecciona al menos un producto para cotizar.');
+            return;
         }
+        
+        let message = "Hola, me interesa solicitar cotización y factura inmediata para los siguientes equipos:\n";
+        message += "Cliente: " + clientName + "\n\n";
+        
+        let totalGeneral = 0;
+        cart.forEach((item, i) => {
+            let subtotal = item.quantity * item.precio;
+            totalGeneral += subtotal;
+            message += (i + 1) + ". " + item.quantity + "x Modelo " + item.ref + " ($" + subtotal.toFixed(2) + " MXN)\n";
+        });
+        
+        message += "\nTotal Estimado (IVA Incluido): $" + totalGeneral.toFixed(2) + " MXN\n";
+        message += "Quedo atento a su confirmación y datos para facturación.";
+        
+        // Formato internacional optimizado para WhatsApp (sin ceros dobles al inicio)
+        const phone = "34639308691"; 
+        const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+        window.open(url, '_blank');
+    }
 
-        function sendWhatsAppOrder() {
-            const clientName = document.getElementById('client-name').value || 'Cliente B2B';
-            if(cart.length === 0) {
-                alert('Por favor selecciona al menos un producto para cotizar.');
-                return;
-            }
-            let message = "Hola, me interesa solicitar cotización y factura inmediata para los siguientes equipos:\n";
-            message += "Cliente: " + clientName + "\n\n";
-            let totalGeneral = 0;
-            cart.forEach((item, i) => {
-                let subtotal = item.quantity * item.precio;
-                totalGeneral += subtotal;
-                message += (i + 1) + ". " + item.quantity + "x Modelo " + item.ref + " ($" + subtotal.toFixed(2) + " MXN)\n";
-            });
-            message += "\nTotal Estimado (IVA Incluido): $" + totalGeneral.toFixed(2) + " MXN\n";
-            message += "Quedo atento a su confirmación y datos para facturación.";
-            
-            const phone = "0034639308691";
-            window.open("https://wa.me/" + phone + "?text=" + encodeURIComponent(message), '_blank');
-
-        function sendObjection(text) {
-            const encoded = encodeURIComponent(text);
-            const phone = "0034639308691"; // Tu número original intacto
-            window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
-        }
-    </script>
-
-</body>
-</html>
+    function sendObjection(text) {
+        const phone = "34639308691";
+        const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(text);
+        window.open(url, '_blank');
+    }
+</script>
 </body>
 </html>
