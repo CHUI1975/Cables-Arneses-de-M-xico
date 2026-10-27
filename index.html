@@ -31,32 +31,32 @@
     <main class="container mx-auto px-4 py-8 flex-grow">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <!-- SCRIPT GENERADOR DE LAS 23 TARJETAS -->
+            <!-- SCRIPT GENERADOR DE LAS 23 TARJETAS (PÚBLICO NEUTRO SIN MÁRGENES VISIBLES) -->
             <script>
                 const productos = [
-                    { ref: "100-NDAM-AZ-1", desc: "Arnés de cuerpo completo anticaídas dieléctrico, argollas en D y ajustes rápidos." },
-                    { ref: "100-NDAM-AZ-3", desc: "Arnés de protección contra caídas con soporte lumbar y argollas dieléctricas." },
-                    { ref: "101-NDAM-AZ-1", desc: "Arnés dieléctrico con diseño ergonómico para posicionamiento y rescate." },
-                    { ref: "102-NDAMC-AZC-3", desc: "Arnés avanzado multipuntos con acojinamiento superior y herrajes dieléctricos." },
-                    { ref: "301-NGA-NGB 16-19-23", desc: "Línea de vida ajustable con amortiguador de impacto y ganchos de doble seguro." },
-                    { ref: "303-NGA-NGB 16-19-23", desc: "Línea de vida en Y con absorbedor de energía y conectores de alta resistencia." },
-                    { ref: "305-NN 16-19-23", desc: "Eslinga de posicionamiento regulable con mosquetones de acero estructural." },
-                    { ref: "421", desc: "Mosquetón de acero forjado con cierre de seguridad automático de triple acción." },
-                    { ref: "433", desc: "Conector de anclaje portátil tipo cinta con argollas de alta resistencia." },
-                    { ref: "435", desc: "Freno para cable de acero para líneas de vida verticales con bloqueo automático." },
-                    { ref: "200-N-16", desc: "Cuerda de seguridad trenzada de alta tenacidad para sistemas de altura." },
-                    { ref: "200-NDAM-NDAZ", desc: "Cinta tubular de alta resistencia para eslingas y anclajes certificados." },
-                    { ref: "200-PP-16", desc: "Soga de polipropileno de alto rendimiento para aplicaciones industriales." },
-                    { ref: "201-NDAMA-NDAZA", desc: "Cuerda especial con tratamiento anti-abrasión para entornos agresivos." },
-                    { ref: "202-NDAMBDAGG-NDAZDBAGG", desc: "Sistema completo de cuerda con terminales cosidas y protección reforzada." },
-                    { ref: "202-NDAMBDA-NDAZDBA", desc: "Línea de anclaje flexible horizontal temporal para trabajos en cubierta." },
-                    { ref: "315-C", desc: "Cinta de anclaje choker ajustable con argollas en acero templado." },
-                    { ref: "300-NGAA-NGBA-101", desc: "Absorbedor de impacto de alta eficiencia con cubierta protectora." },
-                    { ref: "300-NGA-NGB-66", desc: "Eslinga de restricción y posicionamiento con ganchos de gran apertura." },
-                    { ref: "302-NDAMA-NDAZA-80", desc: "Línea de vida ajustable especializada de gran longitud con amortiguador." },
-                    { ref: "304-NNA-101", desc: "Eslinga sencilla de banda textil de alta tenacidad con ganchos de acero." },
-                    { ref: "500-SETC", desc: "Kit de rescate técnico en altura con polipastos y cuerdas especializadas." },
-                    { ref: "502-C-1", desc: "Maleta de lona uso rudo impermeable para transporte y resguardo de equipos." }
+                    { ref: "100-NDAM-AZ-1", desc: "Arnés de cuerpo completo anticaídas dieléctrico, argollas en D y ajustes rápidos.", precio: 1450.00 },
+                    { ref: "100-NDAM-AZ-3", desc: "Arnés de protección contra caídas con soporte lumbar y argollas dieléctricas.", precio: 1680.00 },
+                    { ref: "101-NDAM-AZ-1", desc: "Arnés dieléctrico con diseño ergonómico para posicionamiento y rescate.", precio: 1550.00 },
+                    { ref: "102-NDAMC-AZC-3", desc: "Arnés avanzado multipuntos con acojinamiento superior y herrajes dieléctricos.", precio: 1950.00 },
+                    { ref: "301-NGA-NGB 16-19-23", desc: "Línea de vida ajustable con amortiguador de impacto y ganchos de doble seguro.", precio: 980.00 },
+                    { ref: "303-NGA-NGB 16-19-23", desc: "Línea de vida en Y con absorbedor de energía y conectores de alta resistencia.", precio: 1250.00 },
+                    { ref: "305-NN 16-19-23", desc: "Eslinga de posicionamiento regulable con mosquetones de acero estructural.", precio: 750.00 },
+                    { ref: "421", desc: "Mosquetón de acero forjado con cierre de seguridad automático de triple acción.", precio: 280.00 },
+                    { ref: "433", desc: "Conector de anclaje portátil tipo cinta con argollas de alta resistencia.", precio: 420.00 },
+                    { ref: "435", desc: "Freno para cable de acero para líneas de vida verticales con bloqueo automático.", precio: 2100.00 },
+                    { ref: "200-N-16", desc: "Cuerda de seguridad trenzada de alta tenacidad para sistemas de altura (metro).", precio: 65.00 },
+                    { ref: "200-NDAM-NDAZ", desc: "Cinta tubular de alta resistencia para eslingas y anclajes certificados (metro).", precio: 85.00 },
+                    { ref: "200-PP-16", desc: "Soga de polipropileno de alto rendimiento para aplicaciones industriales.", precio: 55.00 },
+                    { ref: "201-NDAMA-NDAZA", desc: "Cuerda especial con tratamiento anti-abrasión para entornos agresivos.", precio: 110.00 },
+                    { ref: "202-NDAMBDAGG-NDAZDBAGG", desc: "Sistema completo de cuerda con terminales cosidas y protección reforzada.", precio: 1450.00 },
+                    { ref: "202-NDAMBDA-NDAZDBA", desc: "Línea de anclaje flexible horizontal temporal para trabajos en cubierta.", precio: 3200.00 },
+                    { ref: "315-C", desc: "Cinta de anclaje choker ajustable con argollas en acero templado.", precio: 490.00 },
+                    { ref: "300-NGAA-NGBA-101", desc: "Absorbedor de impacto de alta eficiencia con cubierta protectora.", precio: 620.00 },
+                    { ref: "300-NGA-NGB-66", desc: "Eslinga de restricción y posicionamiento con ganchos de gran apertura.", precio: 810.00 },
+                    { ref: "302-NDAMA-NDAZA-80", desc: "Línea de vida ajustable especializada de gran longitud con amortiguador.", precio: 1350.00 },
+                    { ref: "304-NNA-101", desc: "Eslinga sencilla de banda textil de alta tenacidad con ganchos de acero.", precio: 690.00 },
+                    { ref: "500-SETC", desc: "Kit de rescate técnico en altura con polipastos y cuerdas especializadas.", precio: 5800.00 },
+                    { ref: "502-C-1", desc: "Maleta de lona uso rudo impermeable para transporte y resguardo de equipos.", precio: 950.00 }
                 ];
 
                 productos.forEach((p, index) => {
@@ -64,8 +64,9 @@
                         <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 flex flex-col justify-between">
                             <div>
                                 <img src="${p.ref}.jpg" alt="Modelo ${p.ref}" class="w-full h-64 object-contain bg-white p-2">
-                                <div class="px-5 pt-2">
+                                <div class="px-5 pt-2 flex justify-between items-center">
                                     <span class="inline-block bg-slate-200 text-slate-800 text-xs font-bold px-2.5 py-1 rounded">Ref: ${p.ref}</span>
+                                    <span class="text-emerald-700 font-bold text-sm">$${p.precio.toFixed(2)} MXN</span>
                                 </div>
                                 <div class="p-5 pt-2">
                                     <h2 class="text-lg font-semibold mb-2 text-slate-900">Modelo ${p.ref}</h2>
@@ -73,12 +74,16 @@
                                 </div>
                             </div>
                             <div class="p-5 pt-0 flex flex-col gap-2">
+                                <div class="flex items-center gap-2">
+                                    <label class="text-xs font-bold text-gray-700">Cant:</label>
+                                    <input type="number" id="qty-${p.ref}" value="1" min="1" class="w-20 border rounded p-1 text-sm text-center">
+                                    <button onclick="addToQuote('${p.ref}', ${p.precio})" class="flex-grow bg-slate-800 hover:bg-slate-900 text-white font-medium py-2 px-3 rounded transition text-sm">
+                                        🛒 Añadir
+                                    </button>
+                                </div>
                                 <a href="${p.ref}.pdf" target="_blank" class="block text-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition text-sm">
                                     📄 Ver Ficha Técnica (PDF)
                                 </a>
-                                <button onclick="addToQuote('${p.ref}')" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-medium py-2 px-4 rounded transition text-sm">
-                                    ➕ Añadir a Cotización
-                                </button>
                             </div>
                         </div>
                     `);
@@ -98,6 +103,7 @@
             <div id="cart-items" class="mb-4 text-sm text-gray-700 space-y-2">
                 <p class="text-gray-500 italic">No hay productos seleccionados todavía.</p>
             </div>
+            <div id="cart-total" class="mb-4 text-right font-bold text-slate-900 text-base border-t pt-2"></div>
             <div class="mb-4">
                 <label class="block text-xs font-bold text-gray-700 mb-1">Nombre / Empresa:</label>
                 <input type="text" id="client-name" placeholder="Ej. Constructora del Valle" class="w-full border rounded p-2 text-sm">
@@ -135,36 +141,55 @@
         <p class="text-xs text-gray-400">&copy; 2026 - Catálogo B2B de Equipos de Seguridad. CDMX y Estado de México.</p>
     </footer>
 
-    <!-- SCRIPT DE INTERACTIVIDAD DEL CARRITO Y WHATSAPP -->
+    <!-- SCRIPT DE INTERACTIVIDAD -->
     <script>
         let cart = [];
 
-        function addToQuote(ref) {
-            if(!cart.includes(ref)) {
-                cart.push(ref);
+        function addToQuote(ref, precio) {
+            const qtyInput = document.getElementById(`qty-${ref}`);
+            const quantity = parseInt(qtyInput.value) || 1;
+            
+            const existingIndex = cart.findIndex(item => item.ref === ref);
+            if(existingIndex > -1) {
+                cart[existingIndex].quantity += quantity;
+            } else {
+                cart.push({ ref: ref, quantity: quantity, precio: precio });
             }
-            document.getElementById('cart-count').innerText = cart.length;
+            
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').innerText = totalCount;
             updateCartUI();
-            alert(`Modelo ${ref} añadido a la cotización.`);
+            alert(`Añadido: ${quantity} pza(s) del Modelo ${ref}`);
         }
 
         function updateCartUI() {
             const container = document.getElementById('cart-items');
+            const totalContainer = document.getElementById('cart-total');
             if(cart.length === 0) {
                 container.innerHTML = '<p class="text-gray-500 italic">No hay productos seleccionados todavía.</p>';
+                totalContainer.innerHTML = '';
                 return;
             }
             let html = '<ul class="divide-y divide-gray-200">';
+            let totalGeneral = 0;
+            
             cart.forEach((item, index) => {
-                html += `<li class="py-2 flex justify-between items-center text-sm"><span>📦 Modelo: <b>${item}</b></span> <button onclick="removeFromCart(${index})" class="text-red-600 hover:text-red-800 text-xs font-bold">Eliminar</button></li>`;
+                let subtotal = item.quantity * item.precio;
+                totalGeneral += subtotal;
+                html += `<li class="py-2 flex justify-between items-center text-sm">
+                            <span>📦 <b>${item.ref}</b> x ${item.quantity} pza(s) - <b>$${subtotal.toFixed(2)} MXN</b></span> 
+                            <button onclick="removeFromCart(${index})" class="text-red-600 hover:text-red-800 text-xs font-bold">Eliminar</button>
+                         </li>`;
             });
             html += '</ul>';
             container.innerHTML = html;
+            totalContainer.innerHTML = `Total Estimado: $${totalGeneral.toFixed(2)} MXN`;
         }
 
         function removeFromCart(index) {
             cart.splice(index, 1);
-            document.getElementById('cart-count').innerText = cart.length;
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').innerText = totalCount;
             updateCartUI();
         }
 
@@ -176,24 +201,25 @@
             }
             let message = `Hola, me interesa solicitar cotización y factura inmediata para los siguientes equipos:%0A`;
             message += `*Cliente:* ${clientName}%0A%0A`;
+            let totalGeneral = 0;
             cart.forEach((item, i) => {
-                message += `${i+1}. Modelo: *${item}*%0A`;
+                let subtotal = item.quantity * item.precio;
+                totalGeneral += subtotal;
+                message += `${i+1}. *${item.quantity}x* Modelo *${item.ref}* ($${subtotal.toFixed(2)} MXN)%0A`;
             });
-            message += `%0AQuedo atento a su confirmación y datos para facturación.`;
+            message += `%0A*Total Estimado:* $${totalGeneral.toFixed(2)} MXN%0A`;
+            message += `Quedo atento a su confirmación y datos para facturación.`;
             
-            // Reemplaza con tu número de WhatsApp con lada (ej: 521XXXXXXXXXX para México)
-            const phone = "+34 639308691"; 
+            const phone = "0034639308691"; // Reemplaza con tu WhatsApp real
             window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
         }
 
         function sendObjection(text) {
             const encoded = encodeURIComponent(text);
-            const phone = "+34 639308691";
+            const phone = "0034639308691";
             window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
         }
     </script>
 
-</body>
-</html>
 </body>
 </html>
