@@ -1,8 +1,5 @@
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
+UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo Profesional de Equipos de Protección</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,22 +13,42 @@
                 <h1 class="text-2xl md:text-3xl font-bold uppercase tracking-wider text-center md:text-left">Catálogo Técnico B2B</h1>
                 <p class="text-xs md:text-sm text-gray-400 mt-1 text-center md:text-left">Equipos Certificados para Trabajo en Altura</p>
             </div>
-            <div class="mt-4 md:mt-0 flex gap-2">
-                <button onclick="document.getElementById('cotizador-modal').classList.toggle('hidden')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded shadow transition text-sm flex items-center gap-2">
+            <div class="mt-4 md:mt-0 flex flex-wrap gap-2 justify-center">
+                <button onclick="document.getElementById('cotizador-modal').classList.toggle('hidden')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-3 rounded shadow transition text-sm flex items-center gap-1">
                     🛒 Ver Cotización (<span id="cart-count">0</span>)
                 </button>
-                <button onclick="document.getElementById('objeciones-modal').classList.toggle('hidden')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded shadow transition text-sm">
-                    💡 Objeciones / Ayuda
+                <button onclick="document.getElementById('certificados-modal').classList.toggle('hidden')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded shadow transition text-sm">
+                    📜 Certificados
+                </button>
+                <button onclick="document.getElementById('respuestas-modal').classList.toggle('hidden')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-3 rounded shadow transition text-sm">
+                    💬 Respuestas Rápidas
                 </button>
             </div>
         </div>
     </header>
 
+    <!-- BARRA LLAMATIVA DE VENTAJAS COMERCIALES (CALLOUTS) -->
+    <section class="bg-amber-500 text-slate-950 py-3 shadow-inner">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-around items-center text-center gap-2 md:gap-4 font-bold text-sm md:text-base">
+            <div class="flex items-center gap-2">
+                <span class="text-xl">⚡</span> Precios Imbatibles de Fábrica
+            </div>
+            <div class="hidden md:block text-amber-900">|</div>
+            <div class="flex items-center gap-2">
+                <span class="text-xl">🐂</span> Cuero 100% Natural de Calidad
+            </div>
+            <div class="hidden md:block text-amber-900">|</div>
+            <div class="flex items-center gap-2">
+                <span class="text-xl">🛡️</span> Cumplimiento de Normas Oficiales
+            </div>
+        </div>
+    </section>
+
     <!-- MAIN GRID DE PRODUCTOS -->
     <main class="container mx-auto px-4 py-8 flex-grow">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <!-- SCRIPT GENERADOR DE LAS 23 TARJETAS (DESCRIPCIONES 100% OFICIALES DE FICHA TÉCNICA) -->
+            <!-- SCRIPT GENERADOR DE LAS 23 TARJETAS (TUS DATOS ORIGINALES INTACTOS) -->
             <script>
                 const productos = [
                     { ref: "100-NDAM-AZ-1", desc: "Arnés anticaídas, 1 argollas D y ajustes rápidos.", precio: 381.00 },
@@ -117,23 +134,39 @@
         </div>
     </div>
 
-    <!-- MODAL OBJECIONES FRECUENTES -->
-    <div id="objeciones-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+    <!-- MODAL CERTIFICADOS (INDEPENDIENTE) -->
+    <div id="certificados-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-md w-full p-6 shadow-xl">
+            <div class="flex justify-between items-center mb-4 border-b pb-2">
+                <h3 class="text-xl font-bold text-slate-900">Certificados Oficiales</h3>
+                <button onclick="document.getElementById('certificados-modal').classList.add('hidden')" class="text-gray-500 hover:text-black font-bold text-xl">✕</button>
+            </div>
+            <p class="text-xs text-gray-600 mb-4">Consulte y descargue los documentos de cumplimiento y homologación de nuestros equipos:</p>
+            <div class="space-y-2">
+                <a href="certificado.pdf" target="_blank" class="block text-center bg-slate-800 hover:bg-slate-900 text-white font-medium py-2.5 px-4 rounded transition text-sm">
+                    📜 Ver Certificado General de Calidad (PDF)
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL RESPUESTAS RÁPIDAS -->
+    <div id="respuestas-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-lg max-w-lg w-full p-6 shadow-xl max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center mb-4 border-b pb-2">
-                <h3 class="text-xl font-bold text-slate-900">Respuestas Rápidas / Objeciones</h3>
-                <button onclick="document.getElementById('objeciones-modal').classList.add('hidden')" class="text-gray-500 hover:text-black font-bold text-xl">✕</button>
+                <h3 class="text-xl font-bold text-slate-900">Respuestas Rápidas</h3>
+                <button onclick="document.getElementById('respuestas-modal').classList.add('hidden')" class="text-gray-500 hover:text-black font-bold text-xl">✕</button>
             </div>
             <p class="text-xs text-gray-500 mb-4">Haz clic en cualquier respuesta para enviarla inmediatamente por WhatsApp a tu cliente:</p>
             <div class="space-y-3">
                 <button onclick="sendObjection('Hola, respecto a la normativa: todos nuestros equipos cumplen rigurosamente con las normas oficiales vigentes (STPS / ANSI / CSA) para trabajos en altura, garantizando total seguridad.')" class="w-full text-left bg-gray-50 hover:bg-gray-100 border p-3 rounded text-xs">
                     🛡️ <b>Normativas y Certificaciones:</b> Garantía de cumplimiento STPS / ANSI.
                 </button>
-                <button onclick="sendObjection('Hola, contamos con stock disponible en CDMX y Estado de México para entrega inmediata, así como envíos express a toda la república.')" class="w-full text-left bg-gray-50 hover:bg-gray-100 border p-3 rounded text-xs">
+                <button onclick="sendObjection('Hola, contamos con stock disponible para entrega inmediata, así como envíos express a toda la república.')" class="w-full text-left bg-gray-50 hover:bg-gray-100 border p-3 rounded text-xs">
                     🚚 <b>Tiempos de Entrega:</b> Stock disponible y envíos express.
                 </button>
-                <button onclick="sendObjection('Hola, claro que sí emitimos factura fiscal (CFDI) de inmediato con el desglose correspondiente en cuanto se confirma su pedido.')" class="w-full text-left bg-gray-50 hover:bg-gray-100 border p-3 rounded text-xs">
-                    📄 <b>Facturación:</b> Emisión inmediata de factura fiscal CFDI.
+                <button onclick="sendObjection('Hola, claro que sí emitimos factura fiscal correspondiente en cuanto se confirma su pedido.')" class="w-full text-left bg-gray-50 hover:bg-gray-100 border p-3 rounded text-xs">
+                    📄 <b>Facturación:</b> Emisión inmediata de factura fiscal.
                 </button>
             </div>
         </div>
@@ -141,10 +174,10 @@
 
     <!-- FOOTER -->
     <footer class="bg-slate-900 text-white text-center py-6 mt-12">
-        <p class="text-xs text-gray-400">&copy; 2026 - Catálogo B2B de Equipos de Seguridad. CDMX y Estado de México.</p>
+        <p class="text-xs text-gray-400">&copy; 2026 - Catálogo B2B de Equipos de Seguridad.</p>
     </footer>
 
-    <!-- SCRIPT DE INTERACTIVIDAD -->
+    <!-- SCRIPT DE INTERACTIVIDAD (TUS FUNCIONES ORIGINALES INTACTAS) -->
     <script>
         let cart = [];
 
@@ -213,19 +246,18 @@
             message += `%0A*Total Estimado (IVA Incluido):* $${totalGeneral.toFixed(2)} MXN%0A`;
             message += `Quedo atento a su confirmación y datos para facturación.`;
             
-            const phone = "0034639308691"; // Reemplaza con tu número de WhatsApp real
+            const phone = "0034639308691"; // Tu número original intacto
             window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
         }
 
         function sendObjection(text) {
             const encoded = encodeURIComponent(text);
-            const phone = "0034639308691";
+            const phone = "0034639308691"; // Tu número original intacto
             window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
         }
     </script>
 
 </body>
 </html>
-
 </body>
 </html>
