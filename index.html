@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo Profesional de Equipos de Protección</title>
+    <title>Catálogo Profesional de Equipos de Protección en Alturas</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
@@ -31,16 +31,16 @@
     <main class="container mx-auto px-4 py-8 flex-grow">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <!-- SCRIPT GENERADOR DE LAS 23 TARJETAS (PÚBLICO NEUTRO SIN MÁRGENES VISIBLES) -->
+            <!-- SCRIPT GENERADOR DE LAS 23 TARJETAS -->
             <script>
                 const productos = [
-                    { ref: "100-NDAM-AZ-1", desc: "Arnés de cuerpo completo anticaídas dieléctrico, argollas en D y ajustes rápidos.", precio: 1450.00 },
-                    { ref: "100-NDAM-AZ-3", desc: "Arnés de protección contra caídas con soporte lumbar y argollas dieléctricas.", precio: 1680.00 },
-                    { ref: "101-NDAM-AZ-1", desc: "Arnés dieléctrico con diseño ergonómico para posicionamiento y rescate.", precio: 1550.00 },
-                    { ref: "102-NDAMC-AZC-3", desc: "Arnés avanzado multipuntos con acojinamiento superior y herrajes dieléctricos.", precio: 1950.00 },
-                    { ref: "301-NGA-NGB 16-19-23", desc: "Línea de vida ajustable con amortiguador de impacto y ganchos de doble seguro.", precio: 980.00 },
-                    { ref: "303-NGA-NGB 16-19-23", desc: "Línea de vida en Y con absorbedor de energía y conectores de alta resistencia.", precio: 1250.00 },
-                    { ref: "305-NN 16-19-23", desc: "Eslinga de posicionamiento regulable con mosquetones de acero estructural.", precio: 750.00 },
+                    { ref: "100-NDAM-AZ-1", desc: "Arnés de cuerpo completo anticaídas dieléctrico, argollas en D y ajustes rápidos.", precio: 381.00 },
+                    { ref: "100-NDAM-AZ-3", desc: "Arnés de protección contra caídas con soporte lumbar y argollas dieléctricas.", precio: 505.00 },
+                    { ref: "101-NDAM-AZ-1", desc: "Arnés dieléctrico con diseño ergonómico para posicionamiento y rescate.", precio: 426.00 },
+                    { ref: "102-NDAMC-AZC-3", desc: "Arnés avanzado multipuntos con acojinamiento superior y herrajes dieléctricos.", precio: 618.00 },
+                    { ref: "301-NGA-NGB 16-19-23", desc: "Línea de vida ajustable con amortiguador de impacto y ganchos de doble seguro.", precio: 584.00 },
+                    { ref: "303-NGA-NGB 16-19-23", desc: "Línea de vida en Y con absorbedor de energía y conectores de alta resistencia.", precio: 419.00 },
+                    { ref: "305-NN 16-19-23", desc: "Eslinga de posicionamiento regulable con mosquetones de acero estructural.", precio: 1340.00 },
                     { ref: "421", desc: "Mosquetón de acero forjado con cierre de seguridad automático de triple acción.", precio: 280.00 },
                     { ref: "433", desc: "Conector de anclaje portátil tipo cinta con argollas de alta resistencia.", precio: 420.00 },
                     { ref: "435", desc: "Freno para cable de acero para líneas de vida verticales con bloqueo automático.", precio: 2100.00 },
@@ -66,7 +66,10 @@
                                 <img src="${p.ref}.jpg" alt="Modelo ${p.ref}" class="w-full h-64 object-contain bg-white p-2">
                                 <div class="px-5 pt-2 flex justify-between items-center">
                                     <span class="inline-block bg-slate-200 text-slate-800 text-xs font-bold px-2.5 py-1 rounded">Ref: ${p.ref}</span>
-                                    <span class="text-emerald-700 font-bold text-sm">$${p.precio.toFixed(2)} MXN</span>
+                                    <div class="text-right">
+                                        <span class="text-emerald-700 font-bold text-sm">$${p.precio.toFixed(2)} MXN</span>
+                                        <span class="block text-[10px] text-gray-500 font-medium">IVA Incluido</span>
+                                    </div>
                                 </div>
                                 <div class="p-5 pt-2">
                                     <h2 class="text-lg font-semibold mb-2 text-slate-900">Modelo ${p.ref}</h2>
@@ -183,7 +186,7 @@
             });
             html += '</ul>';
             container.innerHTML = html;
-            totalContainer.innerHTML = `Total Estimado: $${totalGeneral.toFixed(2)} MXN`;
+            totalContainer.innerHTML = `Total Estimado (IVA Incluido): $${totalGeneral.toFixed(2)} MXN`;
         }
 
         function removeFromCart(index) {
@@ -207,16 +210,16 @@
                 totalGeneral += subtotal;
                 message += `${i+1}. *${item.quantity}x* Modelo *${item.ref}* ($${subtotal.toFixed(2)} MXN)%0A`;
             });
-            message += `%0A*Total Estimado:* $${totalGeneral.toFixed(2)} MXN%0A`;
+            message += `%0A*Total Estimado (IVA Incluido):* $${totalGeneral.toFixed(2)} MXN%0A`;
             message += `Quedo atento a su confirmación y datos para facturación.`;
             
-            const phone = "0034639308691"; // Reemplaza con tu WhatsApp real
+            const phone = "5215500000000"; // Reemplaza con tu número de WhatsApp real
             window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
         }
 
         function sendObjection(text) {
             const encoded = encodeURIComponent(text);
-            const phone = "0034639308691";
+            const phone = "5215500000000";
             window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
         }
     </script>
