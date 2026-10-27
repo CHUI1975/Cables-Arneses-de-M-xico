@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo Profesional de Equipos de Protección en Alturas</title>
+    <title>Catálogo Profesional de Equipos de Protección</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
@@ -31,32 +31,32 @@
     <main class="container mx-auto px-4 py-8 flex-grow">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <!-- SCRIPT GENERADOR DE LAS 23 TARJETAS -->
+            <!-- SCRIPT GENERADOR DE LAS 23 TARJETAS (DESCRIPCIONES 100% OFICIALES DE FICHA TÉCNICA) -->
             <script>
                 const productos = [
-                    { ref: "100-NDAM-AZ-1", desc: "Arnés de cuerpo completo anticaídas dieléctrico, argollas en D y ajustes rápidos.", precio: 381.00 },
-                    { ref: "100-NDAM-AZ-3", desc: "Arnés de protección contra caídas con soporte lumbar y argollas dieléctricas.", precio: 505.00 },
-                    { ref: "101-NDAM-AZ-1", desc: "Arnés dieléctrico con diseño ergonómico para posicionamiento y rescate.", precio: 426.00 },
-                    { ref: "102-NDAMC-AZC-3", desc: "Arnés avanzado multipuntos con acojinamiento superior y herrajes dieléctricos.", precio: 618.00 },
-                    { ref: "301-NGA-NGB 16-19-23", desc: "Línea de vida ajustable con amortiguador de impacto y ganchos de doble seguro.", precio: 584.00 },
-                    { ref: "303-NGA-NGB 16-19-23", desc: "Línea de vida en Y con absorbedor de energía y conectores de alta resistencia.", precio: 419.00 },
-                    { ref: "305-NN 16-19-23", desc: "Eslinga de posicionamiento regulable con mosquetones de acero estructural.", precio: 1340.00 },
-                    { ref: "421", desc: "Mosquetón de acero forjado con cierre de seguridad automático de triple acción.", precio: 280.00 },
-                    { ref: "433", desc: "Conector de anclaje portátil tipo cinta con argollas de alta resistencia.", precio: 420.00 },
-                    { ref: "435", desc: "Freno para cable de acero para líneas de vida verticales con bloqueo automático.", precio: 2100.00 },
-                    { ref: "200-N-16", desc: "Cuerda de seguridad trenzada de alta tenacidad para sistemas de altura (metro).", precio: 65.00 },
-                    { ref: "200-NDAM-NDAZ", desc: "Cinta tubular de alta resistencia para eslingas y anclajes certificados (metro).", precio: 85.00 },
-                    { ref: "200-PP-16", desc: "Soga de polipropileno de alto rendimiento para aplicaciones industriales.", precio: 55.00 },
-                    { ref: "201-NDAMA-NDAZA", desc: "Cuerda especial con tratamiento anti-abrasión para entornos agresivos.", precio: 110.00 },
-                    { ref: "202-NDAMBDAGG-NDAZDBAGG", desc: "Sistema completo de cuerda con terminales cosidas y protección reforzada.", precio: 1450.00 },
-                    { ref: "202-NDAMBDA-NDAZDBA", desc: "Línea de anclaje flexible horizontal temporal para trabajos en cubierta.", precio: 3200.00 },
-                    { ref: "315-C", desc: "Cinta de anclaje choker ajustable con argollas en acero templado.", precio: 490.00 },
-                    { ref: "300-NGAA-NGBA-101", desc: "Absorbedor de impacto de alta eficiencia con cubierta protectora.", precio: 620.00 },
-                    { ref: "300-NGA-NGB-66", desc: "Eslinga de restricción y posicionamiento con ganchos de gran apertura.", precio: 810.00 },
-                    { ref: "302-NDAMA-NDAZA-80", desc: "Línea de vida ajustable especializada de gran longitud con amortiguador.", precio: 1350.00 },
-                    { ref: "304-NNA-101", desc: "Eslinga sencilla de banda textil de alta tenacidad con ganchos de acero.", precio: 690.00 },
-                    { ref: "500-SETC", desc: "Kit de rescate técnico en altura con polipastos y cuerdas especializadas.", precio: 5800.00 },
-                    { ref: "502-C-1", desc: "Maleta de lona uso rudo impermeable para transporte y resguardo de equipos.", precio: 950.00 }
+                    { ref: "100-NDAM-AZ-1", desc: "Arnés anticaídas, 1 argollas D y ajustes rápidos.", precio: 381.00 },
+                    { ref: "100-NDAM-AZ-3", desc: "Arnés anticaídas posicionamiento y rescate, 3 argollas D.", precio: 505.00 },
+                    { ref: "101-NDAM-AZ-1", desc: "Arnés anticaídas, 1 argollas D y ajustes rápidos.", precio: 426.00 },
+                    { ref: "102-NDAMC-AZC-3", desc: "Arnés anticaídas posicionamiento y rescate, 3 argollas D.", precio: 618.00 },
+                    { ref: "301-NGA-NGB 16-19-23", desc: "Bandola de seguridad, Posicionamiento para linero y ganchos de acero.", precio: 584.00 },
+                    { ref: "303-NGA-NGB 16-19-23", desc: "Bandola de seguridad, Posicionamiento para linero y ganchos de acero de doble seguro.", precio: 419.00 },
+                    { ref: "305-NN 16-19-23", desc: "Bandola de seguridad de neopreno, Posicionamiento para linero y ganchos de acero.", precio: 1340.00 },
+                    { ref: "421", desc: "Bolsa para herramienta 100% de cuero NO CARNAZA GRAN DURACION", precio: 141.00 },
+                    { ref: "433", desc: "Bolsa clavera de lona, con porta martillo.", precio: 326.00 },
+                    { ref: "435", desc: "Bolsa para herramienta 100% de cuero NO CARNAZA GRAN DURACION.", precio: 358.00 },
+                    { ref: "200-N-16", desc: "Cable posicionamiento multifilamento trenzado de alta resistencia de 5/8\" (16 mm) de diámetro, .", precio: 481.00 },
+                    { ref: "200-NDAM-NDAZ", desc: "Cable posicionamiento de poliéster de alta resistencia y ganchos con doble seguro.", precio: 365.00 },
+                    { ref: "200-PP-16", desc: "Cable posicionamiento de polipropileno alta resistencia de 5/8\" (16 mm) de diámetro y ganchos con doble seguro.", precio: 379.00 },
+                    { ref: "201-NDAMA-NDAZA", desc: "Cable de vida con amortiguador, de poliéster de alta resistencia y ganchos con doble seguro.", precio: 383.00 },
+                    { ref: "202-NDAMBDAGG-NDAZDBAGG", desc: "Cable de vida doble brazo con amortiguador, de poliéster de alta resistencia con ganchos de gran apertura.", precio: 700.00 },
+                    { ref: "202-NDAMBDA-NDAZDBA", desc: "Cable de vida doble brazo con amortiguador, de poliéster de alta resistencia con ganchos normales doble seguro.", precio: 415.00 },
+                    { ref: "315-C", desc: "Cinturón para bolsa porta herramienta de cuero NO CARNAZA, GRAN DURACION.", precio: 358.00 },
+                    { ref: "300-NGAA-NGBA-101", desc: "Cinturón de posicionamiento y portaherramientas de poliester para linero acojinado de 101 mm.", precio: 618.00 },
+                    { ref: "300-NGA-NGB-66", desc: "Cinturón de posicionamiento y portaherramientas de poliester para linero.", precio: 454.00 },
+                    { ref: "302-NDAMA-NDAZA-80", desc: "Cinturón de posicionamiento y portaherramientas de nylon-neopreno para linero acojinado de 80 cm.", precio: 394.00 },
+                    { ref: "304-NNA-101", desc: "Cinturón de posicionamiento y portaherramientas de poliester para linero acojinado de 101 mm..", precio: 1450.00 },
+                    { ref: "500-SETC", desc: "Faja sacrolumbar reforzada (202 mm.) con tirantes (37 mm.) y tercer cinturón (51 mm.).", precio: 109.00 },
+                    { ref: "502-C-1", desc: "Faja de cuero NO CARNAZA GRAN DURACION con respaldo de 100 mm. para pesista, estribador y multiusos.", precio: 280.00 }
                 ];
 
                 productos.forEach((p, index) => {
@@ -213,16 +213,19 @@
             message += `%0A*Total Estimado (IVA Incluido):* $${totalGeneral.toFixed(2)} MXN%0A`;
             message += `Quedo atento a su confirmación y datos para facturación.`;
             
-            const phone = "5215500000000"; // Reemplaza con tu número de WhatsApp real
+            const phone = "0034639308691"; // Reemplaza con tu número de WhatsApp real
             window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
         }
 
         function sendObjection(text) {
             const encoded = encodeURIComponent(text);
-            const phone = "5215500000000";
+            const phone = "0034639308691";
             window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
         }
     </script>
+
+</body>
+</html>
 
 </body>
 </html>
