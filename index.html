@@ -4,44 +4,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Equipos de Seguridad en Alturas </title>
+    <title>Catálogo Profesional de Equipos de Protección</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
 
-    <header class="bg-slate-900 text-white py-6 shadow-md">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-3xl font-bold uppercase tracking-wider">Catálogo de Equipos de Protección en Alturas</h1>
-            <p class="text-sm text-gray-400 mt-1">Equipos certificados para trabajo en altura</p>
+    <!-- HEADER -->
+    <header class="bg-slate-900 text-white py-6 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold uppercase tracking-wider text-center md:text-left">Catálogo Técnico B2B</h1>
+                <p class="text-xs md:text-sm text-gray-400 mt-1 text-center md:text-left">Equipos Certificados para Trabajo en Altura</p>
+            </div>
+            <div class="mt-4 md:mt-0 flex gap-2">
+                <button onclick="document.getElementById('cotizador-modal').classList.toggle('hidden')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded shadow transition text-sm flex items-center gap-2">
+                    🛒 Ver Cotización (<span id="cart-count">0</span>)
+                </button>
+                <button onclick="document.getElementById('objeciones-modal').classList.toggle('hidden')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded shadow transition text-sm">
+                    💡 Objeciones / Ayuda
+                </button>
+            </div>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-8">
+    <!-- MAIN GRID DE PRODUCTOS -->
+    <main class="container mx-auto px-4 py-8 flex-grow">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <!-- PRODUCTO 1 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
-                <img src="100-NDAM-AZ-1.jpg" alt="Arnés de Altura" class="w-full h-64 object-contain bg-white p-2">
-<div class="px-5 pt-2">
-    <span class="inline-block bg-gray-200 text-gray-700 text-xs font-bold px-2.5 py-1 rounded">Ref: 100-NDAM-AZ</span>
-</div>
-<div class="p-5 pt-2">
-    <h2 class="text-xl font-semibold mb-2">Arnés de Protección contra Caídas</h2>
-                    <p class="text-sm text-gray-600 mb-4">Arnés de cuerpo completo, un solo punto de anclaje en la espalda .</p>
-                    <a href="100-NDAM-AZ-1.pdf" target="_blank" class="block text-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition">
-                        Ver Ficha Técnica (PDF)
-                    </a>
-                </div>
-            </div>
+            <!-- SCRIPT GENERADOR DE LAS 23 TARJETAS -->
+            <script>
+                const productos = [
+                    { ref: "100-NDAM-AZ-1", desc: "Arnés de cuerpo completo anticaídas dieléctrico, argollas en D y ajustes rápidos." },
+                    { ref: "100-NDAM-AZ-3", desc: "Arnés de protección contra caídas con soporte lumbar y argollas dieléctricas." },
+                    { ref: "101-NDAM-AZ-1", desc: "Arnés dieléctrico con diseño ergonómico para posicionamiento y rescate." },
+                    { ref: "102-NDAMC-AZC-3", desc: "Arnés avanzado multipuntos con acojinamiento superior y herrajes dieléctricos." },
+                    { ref: "301-NGA-NGB 16-19-23", desc: "Línea de vida ajustable con amortiguador de impacto y ganchos de doble seguro." },
+                    { ref: "303-NGA-NGB 16-19-23", desc: "Línea de vida en Y con absorbedor de energía y conectores de alta resistencia." },
+                    { ref: "305-NN 16-19-23", desc: "Eslinga de posicionamiento regulable con mosquetones de acero estructural." },
+                    { ref: "421", desc: "Mosquetón de acero forjado con cierre de seguridad automático de triple acción." },
+                    { ref: "433", desc: "Conector de anclaje portátil tipo cinta con argollas de alta resistencia." },
+                    { ref: "435", desc: "Freno para cable de acero para líneas de vida verticales con bloqueo automático." },
+                    { ref: "200-N-16", desc: "Cuerda de seguridad trenzada de alta tenacidad para sistemas de altura." },
+                    { ref: "200-NDAM-NDAZ", desc: "Cinta tubular de alta resistencia para eslingas y anclajes certificados." },
+                    { ref: "200-PP-16", desc: "Soga de polipropileno de alto rendimiento para aplicaciones industriales." },
+                    { ref: "201-NDAMA-NDAZA", desc: "Cuerda especial con tratamiento anti-abrasión para entornos agresivos." },
+                    { ref: "202-NDAMBDAGG-NDAZDBAGG", desc: "Sistema completo de cuerda con terminales cosidas y protección reforzada." },
+                    { ref: "202-NDAMBDA-NDAZDBA", desc: "Línea de anclaje flexible horizontal temporal para trabajos en cubierta." },
+                    { ref: "315-C", desc: "Cinta de anclaje choker ajustable con argollas en acero templado." },
+                    { ref: "300-NGAA-NGBA-101", desc: "Absorbedor de impacto de alta eficiencia con cubierta protectora." },
+                    { ref: "300-NGA-NGB-66", desc: "Eslinga de restricción y posicionamiento con ganchos de gran apertura." },
+                    { ref: "302-NDAMA-NDAZA-80", desc: "Línea de vida ajustable especializada de gran longitud con amortiguador." },
+                    { ref: "304-NNA-101", desc: "Eslinga sencilla de banda textil de alta tenacidad con ganchos de acero." },
+                    { ref: "500-SETC", desc: "Kit de rescate técnico en altura con polipastos y cuerdas especializadas." },
+                    { ref: "502-C-1", desc: "Maleta de lona uso rudo impermeable para transporte y resguardo de equipos." }
+                ];
 
-            <!-- Puedes duplicar este bloque de arriba para cada producto cambiando el nombre de la foto y del PDF -->
+                productos.forEach((p, index) => {
+                    document.write(`
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 flex flex-col justify-between">
+                            <div>
+                                <img src="${p.ref}.jpg" alt="Modelo ${p.ref}" class="w-full h-64 object-contain bg-white p-2">
+                                <div class="px-5 pt-2">
+                                    <span class="inline-block bg-slate-200 text-slate-800 text-xs font-bold px-2.5 py-1 rounded">Ref: ${p.ref}</span>
+                                </div>
+                                <div class="p-5 pt-2">
+                                    <h2 class="text-lg font-semibold mb-2 text-slate-900">Modelo ${p.ref}</h2>
+                                    <p class="text-sm text-gray-600 mb-4">${p.desc}</p>
+                                </div>
+                            </div>
+                            <div class="p-5 pt-0 flex flex-col gap-2">
+                                <a href="${p.ref}.pdf" target="_blank" class="block text-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition text-sm">
+                                    📄 Ver Ficha Técnica (PDF)
+                                </a>
+                                <button onclick="addToQuote('${p.ref}')" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-medium py-2 px-4 rounded transition text-sm">
+                                    ➕ Añadir a Cotización
+                                </button>
+                            </div>
+                        </div>
+                    `);
+                });
+            </script>
 
         </div>
     </main>
 
-    <footer class="bg-slate-900 text-white text-center py-4 mt-12">
-        <p class="text-xs text-gray-400">&copy; 2026 - Catálogo B2B de Equipos de Seguridad en Alturas.</p>
+    <!-- MODAL COTIZADOR / WHATSAPP -->
+    <div id="cotizador-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-lg w-full p-6 shadow-xl max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-4 border-b pb-2">
+                <h3 class="text-xl font-bold text-slate-900">Resumen de Cotización</h3>
+                <button onclick="document.getElementById('cotizador-modal').classList.add('hidden')" class="text-gray-500 hover:text-black font-bold text-xl">✕</button>
+            </div>
+            <div id="cart-items" class="mb-4 text-sm text-gray-700 space-y-2">
+                <p class="text-gray-500 italic">No hay productos seleccionados todavía.</p>
+            </div>
+            <div class="mb-4">
+                <label class="block text-xs font-bold text-gray-700 mb-1">Nombre / Empresa:</label>
+                <input type="text" id="client-name" placeholder="Ej. Constructora del Valle" class="w-full border rounded p-2 text-sm">
+            </div>
+            <button onclick="sendWhatsAppOrder()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded transition flex items-center justify-center gap-2">
+                📲 Enviar Cotización por WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL OBJECIONES FRECUENTES -->
+    <div id="objeciones-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-lg w-full p-6 shadow-xl max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-4 border-b pb-2">
+                <h3 class="text-xl font-bold text-slate-900">Respuestas Rápidas / Objeciones</h3>
+                <button onclick="document.getElementById('objeciones-modal').classList.add('hidden')" class="text-gray-500 hover:text-black font-bold text-xl">✕</button>
+            </div>
+            <p class="text-xs text-gray-500 mb-4">Haz clic en cualquier respuesta para enviarla inmediatamente por WhatsApp a tu cliente:</p>
+            <div class="space-y-3">
+                <button onclick="sendObjection('Hola, respecto a la normativa: todos nuestros equipos cumplen rigurosamente con las normas oficiales vigentes (STPS / ANSI / CSA) para trabajos en altura, garantizando total seguridad.')" class="w-full text-left bg-gray-50 hover:bg-gray-100 border p-3 rounded text-xs">
+                    🛡️ <b>Normativas y Certificaciones:</b> Garantía de cumplimiento STPS / ANSI.
+                </button>
+                <button onclick="sendObjection('Hola, contamos con stock disponible en CDMX y Estado de México para entrega inmediata, así como envíos express a toda la república.')" class="w-full text-left bg-gray-50 hover:bg-gray-100 border p-3 rounded text-xs">
+                    🚚 <b>Tiempos de Entrega:</b> Stock disponible y envíos express.
+                </button>
+                <button onclick="sendObjection('Hola, claro que sí emitimos factura fiscal (CFDI) de inmediato con el desglose correspondiente en cuanto se confirma su pedido.')" class="w-full text-left bg-gray-50 hover:bg-gray-100 border p-3 rounded text-xs">
+                    📄 <b>Facturación:</b> Emisión inmediata de factura fiscal CFDI.
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white text-center py-6 mt-12">
+        <p class="text-xs text-gray-400">&copy; 2026 - Catálogo B2B de Equipos de Seguridad. CDMX y Estado de México.</p>
     </footer>
 
+    <!-- SCRIPT DE INTERACTIVIDAD DEL CARRITO Y WHATSAPP -->
+    <script>
+        let cart = [];
+
+        function addToQuote(ref) {
+            if(!cart.includes(ref)) {
+                cart.push(ref);
+            }
+            document.getElementById('cart-count').innerText = cart.length;
+            updateCartUI();
+            alert(`Modelo ${ref} añadido a la cotización.`);
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items');
+            if(cart.length === 0) {
+                container.innerHTML = '<p class="text-gray-500 italic">No hay productos seleccionados todavía.</p>';
+                return;
+            }
+            let html = '<ul class="divide-y divide-gray-200">';
+            cart.forEach((item, index) => {
+                html += `<li class="py-2 flex justify-between items-center text-sm"><span>📦 Modelo: <b>${item}</b></span> <button onclick="removeFromCart(${index})" class="text-red-600 hover:text-red-800 text-xs font-bold">Eliminar</button></li>`;
+            });
+            html += '</ul>';
+            container.innerHTML = html;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            document.getElementById('cart-count').innerText = cart.length;
+            updateCartUI();
+        }
+
+        function sendWhatsAppOrder() {
+            const clientName = document.getElementById('client-name').value || 'Cliente B2B';
+            if(cart.length === 0) {
+                alert('Por favor selecciona al menos un producto para cotizar.');
+                return;
+            }
+            let message = `Hola, me interesa solicitar cotización y factura inmediata para los siguientes equipos:%0A`;
+            message += `*Cliente:* ${clientName}%0A%0A`;
+            cart.forEach((item, i) => {
+                message += `${i+1}. Modelo: *${item}*%0A`;
+            });
+            message += `%0AQuedo atento a su confirmación y datos para facturación.`;
+            
+            // Reemplaza con tu número de WhatsApp con lada (ej: 521XXXXXXXXXX para México)
+            const phone = "5215500000000"; 
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        }
+
+        function sendObjection(text) {
+            const encoded = encodeURIComponent(text);
+            const phone = "5215500000000";
+            window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
+        }
+    </script>
+
+</body>
+</html>
 </body>
 </html>
