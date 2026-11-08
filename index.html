@@ -274,8 +274,9 @@ UTF-8">
             return;
         }
         
-        let message = "Hola, me interesa solicitar cotización y factura inmediata para los siguientes equipos:\n";
-        message += "Cliente: " + clientName + "\n\n";
+       let message = "📋 *NUEVA SOLICITUD DE COTIZACIÓN B2B*\n";
+        message += "Empresa/Cliente: " + clientName + "\n\n";
+        message += "Equipos solicitados:\n";
         
         let totalGeneral = 0;
         cart.forEach((item, i) => {
@@ -284,8 +285,8 @@ UTF-8">
             message += (i + 1) + ". " + item.quantity + "x Modelo " + item.ref + " ($" + subtotal.toFixed(2) + " MXN)\n";
         });
         
-        message += "\nTotal Estimado (IVA Incluido): $" + totalGeneral.toFixed(2) + " MXN\n";
-        message += "Quedo atento a su confirmación y datos para facturación.";
+        message += "\n*Total Estimado (IVA Incluido):* $" + totalGeneral.toFixed(2) + " MXN\n\n";
+        message += "👉 *Acción:* Solicitar datos fiscales completos (Constancia de Situación Fiscal) y confirmar dirección de entrega (Radio 250km CDMX).";
         
         // CORREGIDO: Añadido el "1" después del 52 para que reconozca el móvil correctamente
         const phone = "5215511358460";  
