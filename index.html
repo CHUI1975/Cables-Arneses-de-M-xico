@@ -213,9 +213,9 @@ UTF-8">
 
     <!-- SCRIPT DE INTERACTIVIDAD (TUS FUNCIONES ORIGINALES INTACTAS) -->
     <script>
-        let cart = [];
+       let cart = [];
 
-        function addToQuote(ref, precio) {
+    function addToQuote(ref, precio) {
         const qtyInput = document.getElementById(`qty-${ref}`);
         const quantity = parseInt(qtyInput.value) || 1;
         
@@ -251,7 +251,7 @@ UTF-8">
             html += `<li class="py-2 flex justify-between items-center text-sm">
                         <span>📦 <b>${item.ref}</b> x ${item.quantity} pza(s) - <b>$${subtotal.toFixed(2)} MXN</b></span> 
                         <button onclick="removeFromCart(${index})" class="text-red-600 hover:text-red-800 text-xs font-bold">Eliminar</button>
-                     </li>`;
+                   </li>`;
         });
         html += '</ul>';
         container.innerHTML = html;
@@ -274,7 +274,7 @@ UTF-8">
             return;
         }
         
-       let message = "📋 *NUEVA SOLICITUD DE COTIZACIÓN B2B*\n";
+        let message = "📋 *NUEVA SOLICITUD DE COTIZACIÓN B2B*\n";
         message += "Empresa/Cliente: " + clientName + "\n\n";
         message += "Equipos solicitados:\n";
         
@@ -288,14 +288,12 @@ UTF-8">
         message += "\n*Total Estimado (IVA Incluido):* $" + totalGeneral.toFixed(2) + " MXN\n\n";
         message += "👉 *Acción:* Solicitar datos fiscales completos (Constancia de Situación Fiscal) y confirmar dirección de entrega (Radio 250km CDMX).";
         
-        // CORREGIDO: Añadido el "1" después del 52 para que reconozca el móvil correctamente
         const phone = "5215511358460";  
         const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
         window.open(url, '_blank');
     }
 
     function sendObjection(text) {
-        // CORREGIDO: Añadido el "1" después del 52
         const phone = "5215511358460";
         const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(text);
         window.open(url, '_blank');
