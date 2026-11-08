@@ -287,17 +287,15 @@ UTF-8">
         message += "\nTotal Estimado (IVA Incluido): $" + totalGeneral.toFixed(2) + " MXN\n";
         message += "Quedo atento a su confirmación y datos para facturación.";
         
-        // Formato internacional optimizado para WhatsApp (sin ceros dobles al inicio)
-        const phone = "525511358460"; 
+        // CORREGIDO: Añadido el "1" después del 52 para que reconozca el móvil correctamente
+        const phone = "5215511358460";  
         const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
         window.open(url, '_blank');
     }
 
     function sendObjection(text) {
-        const phone = "525511358460";
+        // CORREGIDO: Añadido el "1" después del 52
+        const phone = "5215511358460";
         const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(text);
         window.open(url, '_blank');
     }
-</script>
-</body>
-</html>
