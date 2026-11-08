@@ -1,12 +1,11 @@
-
-UTF-8">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo Profesional de Equipos de Protección en Alturas</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
-
-   </head>
 <body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
 
     <!-- BANNER SUPERIOR DE URGENCIA Y CONVERSIÓN -->
@@ -14,7 +13,7 @@ UTF-8">
         ⚡ STOCK REAL DE LIQUIDACIÓN — ENVÍO EXPRESS GARANTIZADO EN 24H (Radio 250 km CDMX)
     </div>
 
-    <!-- HEADER PRINCIPAL FIJO CON TUS FUNCIONES ORIGINALES -->
+    <!-- HEADER PRINCIPAL FIJO -->
     <header class="bg-slate-900 text-white py-6 shadow-md sticky top-0 z-50">
         <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
             
@@ -29,29 +28,22 @@ UTF-8">
                 </p>
             </div>
 
-            <!-- BOTONES CON SUS MODALES ORIGINALES -->
+            <!-- BOTONES CON SUS MODALES -->
             <div class="mt-4 md:mt-0 flex flex-wrap gap-2 justify-center">
-                
-                <!-- Botón Cotización -->
                 <button onclick="document.getElementById('cotizador-modal').classList.toggle('hidden')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-3 rounded shadow transition text-sm flex items-center gap-1">
                     🛒 Ver Cotización (<span id="cart-count">0</span>)
                 </button>
-
-                <!-- Botón Certificados -->
                 <button onclick="document.getElementById('certificados-modal').classList.toggle('hidden')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded shadow transition text-sm">
                     📜 Certificados
                 </button>
-
-                <!-- Botón Respuestas Rápidas -->
                 <button onclick="document.getElementById('respuestas-modal').classList.toggle('hidden')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-3 rounded shadow transition text-sm">
                     💬 Respuestas Rápidas
                 </button>
-
             </div>
         </div>
     </header>
 
-    <!-- BARRA LLAMATIVA DE VENTAJAS COMERCIALES (CALLOUTS) -->
+    <!-- BARRA LLAMATIVA DE VENTAJAS COMERCIALES -->
     <section class="bg-amber-500 text-slate-950 py-3 shadow-inner">
         <div class="container mx-auto px-4 flex flex-col md:flex-row justify-around items-center text-center gap-2 md:gap-4 font-bold text-sm md:text-base">
             <div class="flex items-center gap-2">
@@ -72,7 +64,6 @@ UTF-8">
     <main class="container mx-auto px-4 py-8 flex-grow">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <!-- SCRIPT GENERADOR DE LAS 23 TARJETAS (TUS DATOS ORIGINALES INTACTOS) -->
             <script>
                 const productos = [
                     { ref: "100-NDAM-AZ-1", desc: "Arnés anticaídas, 1 argollas D y ajustes rápidos.", precio: 381.00 },
@@ -85,7 +76,7 @@ UTF-8">
                     { ref: "421", desc: "Bolsa para herramienta 100% de cuero NO CARNAZA GRAN DURACION", precio: 141.00 },
                     { ref: "433", desc: "Bolsa clavera de lona, con porta martillo.", precio: 326.00 },
                     { ref: "435", desc: "Bolsa para herramienta 100% de cuero NO CARNAZA GRAN DURACION.", precio: 358.00 },
-                    { ref: "200-N-16", desc: "Cable posicionamiento multifilamento trenzado de alta resistencia de 5/8\" (16 mm) de diámetro, .", precio: 481.00 },
+                    { ref: "200-N-16", desc: "Cable posicionamiento multifilamento trenzado de alta resistencia de 5/8\" (16 mm) de diámetro.", precio: 481.00 },
                     { ref: "200-NDAM-NDAZ", desc: "Cable posicionamiento de poliéster de alta resistencia y ganchos con doble seguro.", precio: 365.00 },
                     { ref: "200-PP-16", desc: "Cable posicionamiento de polipropileno alta resistencia de 5/8\" (16 mm) de diámetro y ganchos con doble seguro.", precio: 379.00 },
                     { ref: "201-NDAMA-NDAZA", desc: "Cable de vida con amortiguador, de poliéster de alta resistencia y ganchos con doble seguro.", precio: 383.00 },
@@ -95,12 +86,12 @@ UTF-8">
                     { ref: "300-NGAA-NGBA-101", desc: "Cinturón de posicionamiento y portaherramientas de poliester para linero acojinado de 101 mm.", precio: 618.00 },
                     { ref: "300-NGA-NGB-66", desc: "Cinturón de posicionamiento y portaherramientas de poliester para linero.", precio: 454.00 },
                     { ref: "302-NDAMA-NDAZA-80", desc: "Cinturón de posicionamiento y portaherramientas de nylon-neopreno para linero acojinado de 80 cm.", precio: 394.00 },
-                    { ref: "304-NNA-101", desc: "Cinturón de posicionamiento y portaherramientas de poliester para linero acojinado de 101 mm..", precio: 1450.00 },
+                    { ref: "304-NNA-101", desc: "Cinturón de posicionamiento y portaherramientas de poliester para linero acojinado de 101 mm.", precio: 1450.00 },
                     { ref: "500-SETC", desc: "Faja sacrolumbar reforzada (202 mm.) con tirantes (37 mm.) y tercer cinturón (51 mm.).", precio: 109.00 },
                     { ref: "502-C-1", desc: "Faja de cuero NO CARNAZA GRAN DURACION con respaldo de 100 mm. para pesista, estribador y multiusos.", precio: 280.00 }
                 ];
 
-                productos.forEach((p, index) => {
+                productos.forEach((p) => {
                     document.write(`
                         <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 flex flex-col justify-between">
                             <div>
@@ -158,7 +149,7 @@ UTF-8">
         </div>
     </div>
 
-    <!-- MODAL CERTIFICADOS (INDEPENDIENTE) -->
+    <!-- MODAL CERTIFICADOS -->
     <div id="certificados-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-lg max-w-md w-full p-6 shadow-xl">
             <div class="flex justify-between items-center mb-4 border-b pb-2">
@@ -178,7 +169,6 @@ UTF-8">
                 </a>
                 <a href="JS-3031 ARGOLLA.pdf" target="_blank" class="block text-center bg-slate-800 hover:bg-slate-900 text-white font-medium py-2 px-4 rounded transition text-xs">
                     📜 JS-3031 (Argolla)
-                    📜 Ver Certificado General de Calidad (PDF)
                 </a>
             </div>
         </div>
@@ -211,90 +201,93 @@ UTF-8">
         <p class="text-xs text-gray-400">&copy; 2026 - Catálogo B2B de Equipos de Seguridad en Altura.</p>
     </footer>
 
-    <!-- SCRIPT DE INTERACTIVIDAD (TUS FUNCIONES ORIGINALES INTACTAS) -->
+    <!-- SCRIPT DE INTERACTIVIDAD -->
     <script>
-       let cart = [];
+        let cart = [];
 
-    function addToQuote(ref, precio) {
-        const qtyInput = document.getElementById(`qty-${ref}`);
-        const quantity = parseInt(qtyInput.value) || 1;
-        
-        const existingIndex = cart.findIndex(item => item.ref === ref);
-        if(existingIndex > -1) {
-            cart[existingIndex].quantity += quantity;
-        } else {
-            cart.push({ ref: ref, quantity: quantity, precio: precio });
+        function addToQuote(ref, precio) {
+            const qtyInput = document.getElementById(`qty-${ref}`);
+            const quantity = parseInt(qtyInput.value) || 1;
+            
+            const existingIndex = cart.findIndex(item => item.ref === ref);
+            if(existingIndex > -1) {
+                cart[existingIndex].quantity += quantity;
+            } else {
+                cart.push({ ref: ref, quantity: quantity, precio: precio });
+            }
+            
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').innerText = totalCount;
+            updateCartUI();
+            alert(`Añadido: ${quantity} pza(s) del Modelo ${ref}`);
         }
-        
-        const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-        document.getElementById('cart-count').innerText = totalCount;
-        updateCartUI();
-        alert(`Añadido: ${quantity} pza(s) del Modelo ${ref}`);
-    }
 
-    function updateCartUI() {
-        const container = document.getElementById('cart-items');
-        const totalContainer = document.getElementById('cart-total');
-        if(!container || !totalContainer) return;
-        
-        if(cart.length === 0) {
-            container.innerHTML = '<p class="text-gray-500 italic">No hay productos seleccionados todavía.</p>';
-            totalContainer.innerHTML = '';
-            return;
+        function updateCartUI() {
+            const container = document.getElementById('cart-items');
+            const totalContainer = document.getElementById('cart-total');
+            if(!container || !totalContainer) return;
+            
+            if(cart.length === 0) {
+                container.innerHTML = '<p class="text-gray-500 italic">No hay productos seleccionados todavía.</p>';
+                totalContainer.innerHTML = '';
+                return;
+            }
+            let html = '<ul class="divide-y divide-gray-200">';
+            let totalGeneral = 0;
+            
+            cart.forEach((item, index) => {
+                let subtotal = item.quantity * item.precio;
+                totalGeneral += subtotal;
+                html += `<li class="py-2 flex justify-between items-center text-sm">
+                            <span>📦 <b>${item.ref}</b> x ${item.quantity} pza(s) - <b>$${subtotal.toFixed(2)} MXN</b></span> 
+                            <button onclick="removeFromCart(${index})" class="text-red-600 hover:text-red-800 text-xs font-bold">Eliminar</button>
+                       </li>`;
+            });
+            html += '</ul>';
+            container.innerHTML = html;
+            totalContainer.innerHTML = `Total Estimado (IVA Incluido): $${totalGeneral.toFixed(2)} MXN`;
         }
-        let html = '<ul class="divide-y divide-gray-200">';
-        let totalGeneral = 0;
-        
-        cart.forEach((item, index) => {
-            let subtotal = item.quantity * item.precio;
-            totalGeneral += subtotal;
-            html += `<li class="py-2 flex justify-between items-center text-sm">
-                        <span>📦 <b>${item.ref}</b> x ${item.quantity} pza(s) - <b>$${subtotal.toFixed(2)} MXN</b></span> 
-                        <button onclick="removeFromCart(${index})" class="text-red-600 hover:text-red-800 text-xs font-bold">Eliminar</button>
-                   </li>`;
-        });
-        html += '</ul>';
-        container.innerHTML = html;
-        totalContainer.innerHTML = `Total Estimado (IVA Incluido): $${totalGeneral.toFixed(2)} MXN`;
-    }
 
-    function removeFromCart(index) {
-        cart.splice(index, 1);
-        const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-        document.getElementById('cart-count').innerText = totalCount;
-        updateCartUI();
-    }
-
-    function sendWhatsAppOrder() {
-        const clientNameInput = document.getElementById('client-name');
-        const clientName = clientNameInput ? clientNameInput.value || 'Cliente B2B' : 'Cliente B2B';
-        
-        if(cart.length === 0) {
-            alert('Por favor selecciona al menos un producto para cotizar.');
-            return;
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').innerText = totalCount;
+            updateCartUI();
         }
-        
-        let message = "📋 *NUEVA SOLICITUD DE COTIZACIÓN B2B*\n";
-        message += "Empresa/Cliente: " + clientName + "\n\n";
-        message += "Equipos solicitados:\n";
-        
-        let totalGeneral = 0;
-        cart.forEach((item, i) => {
-            let subtotal = item.quantity * item.precio;
-            totalGeneral += subtotal;
-            message += (i + 1) + ". " + item.quantity + "x Modelo " + item.ref + " ($" + subtotal.toFixed(2) + " MXN)\n";
-        });
-        
-        message += "\n*Total Estimado (IVA Incluido):* $" + totalGeneral.toFixed(2) + " MXN\n\n";
-        message += "👉 *Acción:* Solicitar datos fiscales completos (Constancia de Situación Fiscal) y confirmar dirección de entrega (Radio 250km CDMX).";
-        
-        const phone = "5215511358460";  
-        const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
-        window.open(url, '_blank');
-    }
 
-    function sendObjection(text) {
-        const phone = "5215511358460";
-        const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(text);
-        window.open(url, '_blank');
-    }
+        function sendWhatsAppOrder() {
+            const clientNameInput = document.getElementById('client-name');
+            const clientName = clientNameInput ? clientNameInput.value || 'Cliente B2B' : 'Cliente B2B';
+            
+            if(cart.length === 0) {
+                alert('Por favor selecciona al menos un producto para cotizar.');
+                return;
+            }
+            
+            let message = "📋 *NUEVA SOLICITUD DE COTIZACIÓN B2B*\n";
+            message += "Empresa/Cliente: " + clientName + "\n\n";
+            message += "Equipos solicitados:\n";
+            
+            let totalGeneral = 0;
+            cart.forEach((item, i) => {
+                let subtotal = item.quantity * item.precio;
+                totalGeneral += subtotal;
+                message += (i + 1) + ". " + item.quantity + "x Modelo " + item.ref + " ($" + subtotal.toFixed(2) + " MXN)\n";
+            });
+            
+            message += "\n*Total Estimado (IVA Incluido):* $" + totalGeneral.toFixed(2) + " MXN\n\n";
+            message += "👉 *Acción:* Solicitar datos fiscales completos (Constancia de Situación Fiscal) y confirmar dirección de entrega (Radio 250km CDMX).";
+            
+            const phone = "5215511358460";  
+            const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+            window.open(url, '_blank');
+        }
+
+        function sendObjection(text) {
+            const phone = "5215511358460";
+            const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(text);
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
