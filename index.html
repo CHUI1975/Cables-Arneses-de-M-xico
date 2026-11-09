@@ -275,8 +275,8 @@
                 message += (i + 1) + ". " + item.quantity + "x Modelo " + item.ref + " ($" + subtotal.toFixed(2) + " MXN)\n";
             });
             
-            message += "\n*Total Estimado (IVA Incluido):* $" + totalGeneral.toFixed(2) + " MXN\n\n";
-            message += "👉 *Acción:* Solicitar datos fiscales completos (Constancia de Situación Fiscal) y confirmar dirección de entrega (Radio 250km CDMX).";
+           message += "\n*Total Estimado (IVA Incluido):* $" + totalGeneral.toFixed(2) + " MXN\n\n";
+        message += "Por favor, compártanos sus datos fiscales (Constancia de Situación Fiscal) y su dirección de envío para procesar su pedido.";
             
             const phone = "5215511358460";  
             const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
